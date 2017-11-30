@@ -18,26 +18,24 @@ export default class App extends Component<{}> {
     this.fetchData();
   }
 
-  // fetchData = async () => {
-  //   const response = await fetch('https://skate-map-4d126.firebaseio.com/.json');
-  //   const json = await response.json();
-  //   console.log(json[Object.keys(json)[0]]);
-  //   const names = json[Object.keys(json)[0]]
-  //   this.setState({data: names})
-  // }
-
   fetchData = async () => {
-    const response = await fetch('https://super-crud.herokuapp.com/books');
+    const response = await fetch('https://skate-map-4d126.firebaseio.com/stuff.json');
     const json = await response.json();
-    console.log(json);
-    this.setState({data: json.books})
+    console.log(json[Object.keys(json)[0]]);
+    things = [];
+    for (let i = 0; i < Object.keys(json).length; i++) {
+      things.push(json[Object.keys(json)[i]])
+    }
+    console.log(things);
+    this.setState({data: things})
   }
 
-  // _executeIndex = () => {
-  //   fetch('https://skate-map-4d126.firebaseio.com/.json')
-  //     .then()
-  // };
-
+  // fetchData = async () => {
+  //   const response = await fetch('https://super-crud.herokuapp.com/books');
+  //   const json = await response.json();
+  //   console.log(json);
+  //   this.setState({data: json.books})
+  // }
 
   postStuff = () => {
     fetch('https://skate-map-4d126.firebaseio.com/stuff.json', {
@@ -47,8 +45,8 @@ export default class App extends Component<{}> {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        firstThing: 'Stuff',
-        secondThing: 'Things',
+        firstThing: 'Godzilla',
+        secondStuff: 'Test',
       })
     })
   }
@@ -63,11 +61,18 @@ export default class App extends Component<{}> {
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
-  
+        <FlatList
+          data={this.state.data}
+          keyExtractor={(x, i) => i}
+          renderItem={({ item }) => 
+          <Text>
+            {item.secondStuff}
+            </Text>}
+        />
         <Button
           onPress={this._onSearchPressed}
           color='#48BBEC'
-          title='Go'
+          title='Create'
         />
       </View>
     );
