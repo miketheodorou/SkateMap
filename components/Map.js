@@ -29,8 +29,12 @@ export default class Map extends Component <{}> {
 						longitude: -105.000363,
 						latitudeDelta: 0.0222,
 						longitudeDelta: 0.0201,
-					}}
-				/>
+					}}>
+					<MapView.Marker
+						coordinate={{ longitude: -105.000363, latitude: 39.749632 }}
+						title={'Yay Hooray'}
+						description={'Sweet Skate Spot'} />
+				</MapView>
 			</View>
 		)
 	}
