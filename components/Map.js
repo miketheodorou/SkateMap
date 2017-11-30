@@ -10,6 +10,27 @@ import {
 import MapView from 'react-native-maps';
 
 export default class Map extends Component <{}> {
+
+	state = {
+		markers : []
+	}
+
+	componentDidMount() {
+		this.fetchMarkers();
+	}
+
+	fetchMarkers = async () => {
+		const response = await fetch('https://skate-map-4d126.firebaseio.com/map-markers.json');
+		const json = await response.json();
+		console.log(json[Object.keys(json)[0]]);
+		fetchedMarkers = [];
+    for (let i = 0; i < Object.keys(json).length; i++) {
+      fetchedMarkers.push(json[Object.keys(json)[i]])
+    }
+    console.log(fetchedMarkers);
+    this.setState({ markers: fetchedMarkers})
+	}
+
 	static navigationOptions = {
 		tabBarLabel: 'Map',
 		tabBarIcon: ({tintColor}) => (
@@ -21,7 +42,6 @@ export default class Map extends Component <{}> {
 	}
 	render() {
 		return(
-			<View style={styles.container}>
 				<MapView
 					style={styles.map}
 					initialRegion={{
@@ -30,12 +50,14 @@ export default class Map extends Component <{}> {
 						latitudeDelta: 0.0222,
 						longitudeDelta: 0.0201,
 					}}>
-					<MapView.Marker
-						coordinate={{ longitude: -105.000363, latitude: 39.749632 }}
-						title={'Yay Hooray'}
-						description={'Sweet Skate Spot'} />
+					{this.state.markers.map((marker, i) => (
+						<MapView.Marker
+							key={i}
+							coordinate={marker.coordinates}
+							title={marker.title}
+							description={marker.desc} />
+						))}
 				</MapView>
-			</View>
 		)
 	}
 }
