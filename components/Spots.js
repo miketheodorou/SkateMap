@@ -5,7 +5,7 @@ import {
   Text,
   Image,
   Button,
-  FlatList
+  FlatList,
 } from 'react-native';
 
 export default class Spots extends Component<{}> {
@@ -32,6 +32,10 @@ export default class Spots extends Component<{}> {
     this.setState({data: things})
   }
 
+  _onPress = () => {
+  	console.log('pressed it!');
+  }
+
 	static navigationOptions = {
 		tabBarLabel: 'Spots',
 		tabBarIcon: ({tintColor}) => (
@@ -51,9 +55,9 @@ export default class Spots extends Component<{}> {
           data={this.state.data}
           keyExtractor={(x, i) => i}
           renderItem={({ item }) => 
-          <Text>
-            {item.secondStuff}
-            </Text>}
+	          <Text>
+	            {item.secondStuff}
+	          </Text>}
         />
       </View>
 		)
