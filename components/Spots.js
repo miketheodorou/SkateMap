@@ -41,7 +41,6 @@ export default class Spots extends Component<{}> {
 			</Image>
 		)
 	}
-	
 	render() {
 		return(
 			<View style={styles.container}>
