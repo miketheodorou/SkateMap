@@ -9,7 +9,13 @@ import {
 
 export default class Map extends Component<{}> {
 	static navigationOptions = {
-		tabBarLabel: 'Map'
+		tabBarLabel: 'Map',
+		tabBarIcon: ({tintColor}) => (
+			<Image
+				source={require('../images/map-icon.png')}
+				style={{width: 22, height: 22, tintColor: 'white'}}>
+			</Image>
+		)
 	}
 	render() {
 		return(
