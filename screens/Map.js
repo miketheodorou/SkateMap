@@ -31,15 +31,6 @@ export default class Map extends Component <{}> {
     this.setState({ markers: fetchedMarkers})
 	}
 
-	static navigationOptions = {
-		tabBarLabel: 'Map',
-		tabBarIcon: ({tintColor}) => (
-			<Image
-				source={require('../images/map-icon.png')}
-				style={{width: 22, height: 22, tintColor: 'white'}}>
-			</Image>
-		)
-	}
 	render() {
 		return(
 				<MapView

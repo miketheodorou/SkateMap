@@ -17,16 +17,6 @@ export default class CreateMap extends Component<{}> {
 		}
 	}
 
-	static navigationOptions = {
-		tabBarLabel: 'CreateMap',
-		tabBarIcon: ({tintColor}) => (
-			<Image
-				source={require('../images/create-icon.png')}
-				style={{width: 22, height: 22, tintColor: 'white'}}>
-			</Image>
-		)
-	}
-
 	render() {
 		return(
 			<MapView

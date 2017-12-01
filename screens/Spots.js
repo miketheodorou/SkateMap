@@ -35,21 +35,12 @@ export default class Spots extends Component<{}> {
   _onPress = () => {
   	console.log('pressed it!');
   }
-
-	static navigationOptions = {
-		tabBarLabel: 'Spots',
-		tabBarIcon: ({tintColor}) => (
-			<Image
-				source={require('../images/skateboard.png')}
-				style={{width: 22, height: 22, tintColor: 'white'}}>
-			</Image>
-		)
-	}
+  
 	render() {
 		return(
 			<View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          All Spots
         </Text>
         <FlatList
           data={this.state.data}
@@ -58,6 +49,11 @@ export default class Spots extends Component<{}> {
 	          <Text>
 	            {item.secondStuff}
 	          </Text>}
+        />
+        <Button
+          onPress={this._onPress}
+          color='#48BBEC'
+          title='Create'
         />
       </View>
 		)
