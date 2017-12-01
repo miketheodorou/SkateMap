@@ -5,7 +5,6 @@ import {
   Text,
   Image,
   Button,
-  NavigatorIOS
 } from 'react-native';
 
 import MapView from 'react-native-maps';
