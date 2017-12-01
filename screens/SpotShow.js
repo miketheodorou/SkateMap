@@ -10,9 +10,12 @@ import {
 
 export default class SpotShow extends Component {
 	render() {
+		const { name, desc } = this.props.navigation.state.params;
+
 		return(
 			<View style={styles.container}>
-				<Text style={styles.welcome}>Spot Show Page!</Text>
+				<Text style={styles.welcome}>{name}</Text>
+				<Text style={styles.container}>{desc}</Text>
 			</View>
 		);
 	}

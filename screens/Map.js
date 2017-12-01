@@ -38,14 +38,14 @@ export default class Map extends Component <{}> {
 					initialRegion={{
 						latitude: 39.749632,
 						longitude: -105.000363,
-						latitudeDelta: 0.0222,
-						longitudeDelta: 0.0201,
+						latitudeDelta: 0.1222,
+						longitudeDelta: 0.1201,
 					}}>
 					{this.state.markers.map((marker, i) => (
 						<MapView.Marker
 							key={i}
 							coordinate={marker.coordinates}
-							title={marker.title}
+							title={marker.name}
 							description={marker.desc} />
 						))}
 				</MapView>
