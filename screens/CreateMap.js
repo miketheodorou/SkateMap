@@ -13,12 +13,20 @@ export default class CreateMap extends Component<{}> {
 	constructor(props) {
 	  super(props);
 	  this.state = {
+	  	/* 
+	  	// Sets initial map region
+	  	// TODO: Set the initial region by geolocation
+	  	*/
 	    region: {
 		    latitude: 39.749632,
 				longitude: -105.000363,
 				latitudeDelta: 0.0222,
 				longitudeDelta: 0.0201,
 	 	  },
+	 	  /*
+	 	  // Sets initial marker location
+	 	  // TODO: Set the initial region by geolocation// 
+	 	  */
 		  marker: {
 		   coordinate:{
 		    latitude: 39.749632,
@@ -28,23 +36,14 @@ export default class CreateMap extends Component<{}> {
 		}
 	}
 
-	componentDidMount() {
-		console.log('Nav: ' + this.props.navigation.state.params);
-		this.props.navigation.state.params = ('booyah');
-		console.log('Nav: ' + this.props.navigation.state.params);
-
-	}
-
 	// updates the marker state when dragged
 	_onMarkerDrag = (e) => {
 		this.setState({
 			marker: { coordinate: e.nativeEvent.coordinate }
 		});
 	} 
-	_onPress = () => {
-		console.log('pressed');
-	}
 
+	// sends marker coordinates through to next screen
 	_handleCreate = () => {
 		console.log(this.state.marker.coordinate);
 		let formCoordinate = this.state.marker.coordinate; 

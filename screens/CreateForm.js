@@ -11,6 +11,7 @@ import {
 export default class CreateForm extends Component {
 
 	render() {
+		// Imports coordinates for pin from CreateMap page
 		const { latitude, longitude } = this.props.navigation.state.params;
 
 		return(

@@ -9,13 +9,17 @@ import {
 } from 'react-native';
 
 export default class SpotShow extends Component {
+
 	render() {
-		const { name, desc } = this.props.navigation.state.params;
+		// Imports parameters from spot list
+		const { name, desc, key } = this.props.navigation.state.params;
+
 
 		return(
 			<View style={styles.container}>
 				<Text style={styles.welcome}>{name}</Text>
 				<Text style={styles.container}>{desc}</Text>
+				<Text style={styles.container}>{key}</Text>
 			</View>
 		);
 	}

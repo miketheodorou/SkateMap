@@ -15,19 +15,21 @@ export default class Map extends Component <{}> {
 		markers : []
 	}
 
+	// Calls the grab spots function 
 	componentDidMount() {
 		this.fetchMarkers();
 	}
 
+	// Fetches all spots and and fills markers
 	fetchMarkers = async () => {
 		const response = await fetch('https://skate-map-4d126.firebaseio.com/spots.json');
 		const json = await response.json();
-		console.log(json[Object.keys(json)[0]]);
+		// console.log(json[Object.keys(json)[0]]);
 		fetchedMarkers = [];
     for (let i = 0; i < Object.keys(json).length; i++) {
       fetchedMarkers.push(json[Object.keys(json)[i]])
     }
-    console.log(fetchedMarkers);
+    // console.log(fetchedMarkers);
     this.setState({ markers: fetchedMarkers})
 	}
 
