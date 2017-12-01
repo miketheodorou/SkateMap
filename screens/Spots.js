@@ -6,13 +6,14 @@ import {
   Image,
   Button,
   FlatList,
+  ScrollView,
 } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 
 export default class Spots extends Component<{}> {
 
 	 state = {
-    data: [],
-    title: 'Spot Show'
+    spots: [],
   }
 
   // Calls the grab spots function on Init
@@ -22,44 +23,60 @@ export default class Spots extends Component<{}> {
 
   // Grabs spot data from /spots endpoint
   fetchSpots = async () => {
-    const response = await fetch('https://skate-map-4d126.firebaseio.com/stuff.json');
+    const response = await fetch('https://skate-map-4d126.firebaseio.com/spots.json');
     const json = await response.json();
     console.log(json[Object.keys(json)[0]]);
-    things = [];
+    fetchedSpots = [];
     for (let i = 0; i < Object.keys(json).length; i++) {
-      things.push(json[Object.keys(json)[i]])
+      fetchedSpots.push(json[Object.keys(json)[i]])
     }
-    console.log(things);
-    this.setState({data: things})
+    console.log(fetchedSpots);
+    this.setState({spots: fetchedSpots})
   }
 
-  _onPress = () => {
-    console.log('pressed button')
-  	this.props.navigation.navigate('SpotShow')
+  // Navigates to the Spot Show page for the Specific Spot
+  onLearnMore = (spot) => {
+    this.props.navigation.navigate('SpotShow', {...spot});
   }
   
-	render() {
-		return(
-			<View style={styles.container}>
-        <Text style={styles.welcome}>
-          All Spots
-        </Text>
-        <FlatList
-          data={this.state.data}
-          keyExtractor={(x, i) => i}
-          renderItem={({ item }) => 
-	          <Text>
-	            {item.secondStuff}
-	          </Text>}
-        />
-        <Button
-          onPress={this._onPress}
-          color='#48BBEC'
-          title='Create'
-        />
-      </View>
-		)
-	}
+  render() {
+    return(
+      <ScrollView>
+        <List>
+          {this.state.spots.map((spot, i) => (
+            <ListItem 
+              key={i}
+              title={spot.name}
+              subtitle={spot.desc}
+              onPress={() => this.onLearnMore(spot)}
+            />
+          ))}
+        </List>
+      </ScrollView>
+    )
+  }
+	// render() {
+	// 	return(
+	// 		<View style={styles.container}>
+ //        <Text style={styles.welcome}>
+ //          All Spots
+ //        </Text>
+ //        <FlatList
+ //          data={this.state.spots}
+ //          keyExtractor={(x, i) => i}
+ //          renderItem={({ item }) => 
+	//           <Text>
+	//             {item.name}
+	//           </Text>}
+ //        />
+ //        <Button
+ //          onPress={this._onPress}
+ //          color='#48BBEC'
+ //          title='Create'
+ //        />
+ //      </View>
+	// 	)
+	// }
 }
 
 const styles = StyleSheet.create({

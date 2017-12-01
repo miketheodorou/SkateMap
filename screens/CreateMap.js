@@ -17,6 +17,9 @@ export default class CreateMap extends Component<{}> {
 		}
 	}
 
+	_onPress = () => {
+		console.log(this.state.coordinate);
+	}
 	render() {
 		return(
 			<MapView

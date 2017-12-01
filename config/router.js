@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { Image } from 'react-native';
+import { Image, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 import Spots from '../screens/Spots';
@@ -37,7 +37,10 @@ export const CreateMapStack = StackNavigator({
 	CreateMap: {
 		screen: CreateMap,
 		navigationOptions: {
-			title: 'App Spot',
+			title: 'Add Spot',
+			headerRight: <Button 
+											title="Create"
+											onPress={this._onPress} />,
 		}
 	},
 	CreateForm: {
