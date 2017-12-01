@@ -20,7 +20,7 @@ export default class Map extends Component <{}> {
 	}
 
 	fetchMarkers = async () => {
-		const response = await fetch('https://skate-map-4d126.firebaseio.com/map-markers.json');
+		const response = await fetch('https://skate-map-4d126.firebaseio.com/spots.json');
 		const json = await response.json();
 		console.log(json[Object.keys(json)[0]]);
 		fetchedMarkers = [];
@@ -31,15 +31,6 @@ export default class Map extends Component <{}> {
     this.setState({ markers: fetchedMarkers})
 	}
 
-	static navigationOptions = {
-		tabBarLabel: 'Map',
-		tabBarIcon: ({tintColor}) => (
-			<Image
-				source={require('../images/map-icon.png')}
-				style={{width: 22, height: 22, tintColor: 'white'}}>
-			</Image>
-		)
-	}
 	render() {
 		return(
 				<MapView
