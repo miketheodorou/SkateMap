@@ -4,7 +4,8 @@ import {
   View,
   Text,
   Image,
-  Button
+  Button,
+  NavigatorIOS
 } from 'react-native';
 
 import MapView from 'react-native-maps';
@@ -38,10 +39,12 @@ export default class CreateMap extends Component<{}> {
 					longitudeDelta: 0.0201,
 				}}>
 			  <MapView.Marker draggable
+			  	title={'Move Pin To Spot Location'}
 			    coordinate={this.state.coordinate}
 			    onDragEnd={(e) => this.setState({ coordinate: e.nativeEvent.coordinate })}
 			  />
 			</MapView>
+		</NavigatorIOS>
 		)
 	}
 }

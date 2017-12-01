@@ -7,9 +7,9 @@ import Map from './Map';
 import CreateMap from './CreateMap';
 
 let MainScreenNavigator = TabNavigator({
-    Tab1: {screen: Spots},
-    Tab2: {screen: Map},
-    Tab3: {screen: CreateMap}
+    Home: {screen: Spots},
+    Map: {screen: Map},
+    CreateMap: {screen: CreateMap}
 },{
   // tabBarPosition: 'botttom',
   tabBarOptions: {
