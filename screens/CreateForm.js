@@ -9,10 +9,14 @@ import {
 } from 'react-native';
 
 export default class CreateForm extends Component {
+
 	render() {
+		const { latitude, longitude } = this.props.navigation.state.params;
+
 		return(
 			<View style={styles.container}>
-				<Text style={styles.welcome}>Create Spot Form Page!</Text>
+				<Text style={styles.welcome}>{latitude}</Text>
+				<Text style={styles.welcome}>{longitude}</Text>
 			</View>
 		);
 	}

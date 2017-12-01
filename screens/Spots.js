@@ -55,28 +55,6 @@ export default class Spots extends Component<{}> {
       </ScrollView>
     )
   }
-	// render() {
-	// 	return(
-	// 		<View style={styles.container}>
- //        <Text style={styles.welcome}>
- //          All Spots
- //        </Text>
- //        <FlatList
- //          data={this.state.spots}
- //          keyExtractor={(x, i) => i}
- //          renderItem={({ item }) => 
-	//           <Text>
-	//             {item.name}
-	//           </Text>}
- //        />
- //        <Button
- //          onPress={this._onPress}
- //          color='#48BBEC'
- //          title='Create'
- //        />
- //      </View>
-	// 	)
-	// }
 }
 
 const styles = StyleSheet.create({
