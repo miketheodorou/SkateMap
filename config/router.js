@@ -7,6 +7,7 @@ import Spots from '../screens/Spots';
 import Map from '../screens/Map';
 import CreateMap from '../screens/CreateMap';
 import SpotShow from '../screens/SpotShow';
+import CreateForm from '../screens/CreateForm';
 
 export const SpotStack = StackNavigator({
 	Spots: {
@@ -18,7 +19,31 @@ export const SpotStack = StackNavigator({
 	SpotShow: {
 		screen: SpotShow,
 		navigationOptions: {
-			title: 'SpotShow',
+			title: 'Spot Name',
+		}
+	}
+});
+
+export const MapStack = StackNavigator({
+	Map: {
+		screen: Map,
+		navigationOptions: {
+			title: 'SkateMap',
+		}
+	}
+});
+
+export const CreateMapStack = StackNavigator({
+	CreateMap: {
+		screen: CreateMap,
+		navigationOptions: {
+			title: 'App Spot',
+		}
+	},
+	CreateForm: {
+		screen: CreateForm,
+		navigationOptions: {
+			title: 'Spot Details',
 		}
 	}
 });
@@ -37,7 +62,7 @@ export const Tabs = TabNavigator({
 	}
 	},
 	Map: {
-		screen: Map,
+		screen: MapStack,
 		navigationOptions: {
 				tabBarLabel: 'Map',
 				tabBarIcon: ({tintColor}) => (
@@ -49,9 +74,9 @@ export const Tabs = TabNavigator({
 			}
 	},
 	CreateMap: {
-		screen: CreateMap,
+		screen: CreateMapStack,
 		navigationOptions: {
-				tabBarLabel: 'CreateMap',
+				tabBarLabel: 'Add Spot',
 				tabBarIcon: ({tintColor}) => (
 					<Image
 						source={require('../images/create-icon.png')}
