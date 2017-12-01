@@ -11,7 +11,8 @@ import {
 export default class Spots extends Component<{}> {
 
 	 state = {
-    data: []
+    data: [],
+    title: 'Spot Show'
   }
 
   // Calls the grab spots function on Init
@@ -33,7 +34,8 @@ export default class Spots extends Component<{}> {
   }
 
   _onPress = () => {
-  	console.log('pressed it!');
+    console.log('pressed button')
+  	this.props.navigation.navigate('SpotShow')
   }
   
 	render() {

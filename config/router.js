@@ -8,9 +8,24 @@ import Map from '../screens/Map';
 import CreateMap from '../screens/CreateMap';
 import SpotShow from '../screens/SpotShow';
 
-export const Tabs = TabNavigator({
+export const SpotStack = StackNavigator({
 	Spots: {
 		screen: Spots,
+		navigationOptions: {
+			title: 'Spots',
+		}
+	},
+	SpotShow: {
+		screen: SpotShow,
+		navigationOptions: {
+			title: 'SpotShow',
+		}
+	}
+});
+
+export const Tabs = TabNavigator({
+	Spots: {
+		screen: SpotStack,
 		navigationOptions: {
 		tabBarLabel: 'Spots',
 		tabBarIcon: ({tintColor}) => (
