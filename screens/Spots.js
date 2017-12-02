@@ -11,14 +11,14 @@ import {
 import { List, ListItem } from 'react-native-elements';
 import * as firebase from 'firebase';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDTpyJ6MP5aag_or6O7Fbk7hPyQMKVJ_hU",
-  authDomain: "skate-map-4d126.firebaseapp.com",
-  databaseURL: "https://skate-map-4d126.firebaseio.com",
-  storageBucket: "skate-map-4d126.appspot.com",
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDTpyJ6MP5aag_or6O7Fbk7hPyQMKVJ_hU",
+//   authDomain: "skate-map-4d126.firebaseapp.com",
+//   databaseURL: "https://skate-map-4d126.firebaseio.com",
+//   storageBucket: "skate-map-4d126.appspot.com",
+// };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 
 export default class Spots extends Component<{}> {
