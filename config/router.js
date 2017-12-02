@@ -38,9 +38,6 @@ export const CreateMapStack = StackNavigator({
 		screen: CreateMap,
 		navigationOptions: {
 			title: 'Drag Marker To Spot',
-			headerRight: <Button 
-											title="Create"
-											onPress={this.onPress} />,
 		}
 	},
 	CreateForm: {
