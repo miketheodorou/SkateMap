@@ -45,7 +45,7 @@ export default class CreateMap extends Component<{}> {
 
 	// sends marker coordinates through to next screen
 	_handleCreate = () => {
-		console.log(this.state.marker.coordinate);
+		// console.log(this.state.marker.coordinate);
 		let formCoordinate = this.state.marker.coordinate; 
 		this.props.navigation.navigate('CreateForm', {...formCoordinate});
 	}
