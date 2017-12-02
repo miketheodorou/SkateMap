@@ -46,7 +46,7 @@ export default class Map extends Component <{}> {
 					{this.state.markers.map((marker, i) => (
 						<MapView.Marker
 							key={i}
-							coordinate={marker.coordinates}
+							coordinate={marker.coordinate}
 							title={marker.name}
 							description={marker.desc} />
 						))}

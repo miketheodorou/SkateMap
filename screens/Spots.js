@@ -32,15 +32,8 @@ export default class Spots extends Component<{}> {
     spots: [],
   }
 
-  // this.spotsRef = this.getRef().child('spots');
-
-  // getRef = () => {
-  //   return firebaseApp.database().ref();
-  // }
-
   // Calls the grab spots function
   componentWillMount() {
-    // this.fetchSpots();
     this.getSpots();
   }
 
