@@ -32,22 +32,31 @@ export default class App2 extends Component {
 		console.log(this.state.user);
 	}
 
+	// Handles login functionality
 	handleLogin = (email, pass) => {
 	    console.log(this.state);
 	    const auth = firebase.auth();
 	    const promise = auth.signInWithEmailAndPassword(email, pass);
-	    promise
-	    .then((res) => {
+	    promise.then((res) => {
 	    	this.setState({user: res.providerData[0].uid});
-	    })
-	    .then()
-	    .catch(e => console.log(e.message));
+	    }).catch(e => console.log(e.message));
+	};
+
+	// Handles signup functionality
+	handleSignup = (email, pass) => {
+	    console.log(this.state);
+	    const auth = firebase.auth();
+	    const promise = auth.createUserWithEmailAndPassword(email, pass);
+	    promise.then((res) => {
+	    	this.setState({user: res.providerData[0].uid});
+	    }).catch(e => console.log(e.message));
 	};
 
   render() {
   	if (!this.state.user) {
 	      return <LoginForm
-	      					handleLogin={this.handleLogin}/>;
+	      					handleLogin={this.handleLogin}
+	      					handleSignup={this.handleSignup}/>;
 	    } else {
   	return <Tabs />
   	}

@@ -32,16 +32,6 @@ export default class LoginForm extends Component {
         console.log(this.state);
     }
 
-    // Handles signup functionality
-    handleSignup = () => {
-        console.log(this.state);
-        const email = this.state.email;
-        const pass = this.state.password;
-        const auth = firebase.auth();
-        const promise = auth.createUserWithEmailAndPassword(email, pass);
-        promise.catch(e => console.log(e.message));
-    };
-
     render() {
         return(
             <View style={styles.container}>
@@ -59,7 +49,7 @@ export default class LoginForm extends Component {
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={styles.button}
-                        onPress={this.handleSignup}>
+                        onPress={() => this.props.handleSignup(this.state.email, this.state.password)}>
                         <Text style={styles.buttonText}>Sign Up</Text>
                     </TouchableHighlight>
                 </View>
@@ -70,7 +60,7 @@ export default class LoginForm extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 20,
+        marginTop: 100,
         flex: 1,
         justifyContent: 'center',
     },
