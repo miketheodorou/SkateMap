@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs } from './config/router';
-import { Login } from './screens/Login';
+import { StyleSheet, View } from 'react-native';
+import LoginForm from './screens/LoginForm';
 
 import * as firebase from 'firebase';
 
@@ -18,11 +19,45 @@ export default class App2 extends Component {
 	  super(props);
 	  this.database = firebase.database();
 	  this.spotsRef = this.database.ref('/spots');
+    this.state = {
+      user: null,
+    };
 	}
+
+	componentDidMount() {
+		console.log(this.state.user);
+	}
+
+	componentDidUpdate() {
+		console.log(this.state.user);
+	}
+
+	handleLogin = (email, pass) => {
+	    console.log(this.state);
+	    const auth = firebase.auth();
+	    const promise = auth.signInWithEmailAndPassword(email, pass);
+	    promise
+	    .then((res) => {
+	    	this.setState({user: res.providerData[0].uid});
+	    })
+	    .then()
+	    .catch(e => console.log(e.message));
+	};
+
   render() {
-    return(
-    	<Login />
-    	// <Tabs />
-    );
+  	if (!this.state.user) {
+	      return <LoginForm
+	      					handleLogin={this.handleLogin}/>;
+	    } else {
+  	return <Tabs />
+  	}
   }
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		marginTop: 70,
+		padding: 20
+	}
+});
