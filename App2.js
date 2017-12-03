@@ -20,16 +20,16 @@ export default class App2 extends Component {
 	  this.database = firebase.database();
 	  this.spotsRef = this.database.ref('/spots');
     this.state = {
-      user: null,
+      currentUser: null,
     };
 	}
 
 	componentDidMount() {
-		console.log(this.state.user);
+		console.log(this.state.currentUser);
 	}
 
 	componentDidUpdate() {
-		console.log(this.state.user);
+		console.log(this.state.currentUser);
 	}
 
 	// Handles login functionality
@@ -38,7 +38,7 @@ export default class App2 extends Component {
 	    const auth = firebase.auth();
 	    const promise = auth.signInWithEmailAndPassword(email, pass);
 	    promise.then((res) => {
-	    	this.setState({user: res.providerData[0].uid});
+	    	this.setState({currentUser: res.providerData[0].uid});
 	    }).catch(e => console.log(e.message));
 	};
 
@@ -48,17 +48,18 @@ export default class App2 extends Component {
 	    const auth = firebase.auth();
 	    const promise = auth.createUserWithEmailAndPassword(email, pass);
 	    promise.then((res) => {
-	    	this.setState({user: res.providerData[0].uid});
+	    	this.setState({currentUser: res.providerData[0].uid});
 	    }).catch(e => console.log(e.message));
 	};
 
   render() {
-  	if (!this.state.user) {
+  	if (!this.state.currentUser) {
 	      return <LoginForm
 	      					handleLogin={this.handleLogin}
 	      					handleSignup={this.handleSignup}/>;
 	    } else {
-  	return <Tabs />
+  	return <Tabs 
+  						screenProps={{currentUser: this.state.currentUser}}/>
   	}
   }
 }

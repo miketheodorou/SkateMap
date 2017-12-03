@@ -13,13 +13,16 @@ import MarkerShow from '../screens/MarkerShow';
 export const SpotStack = StackNavigator({
 	Spots: {
 		screen: Spots,
-		navigationOptions: {
-			title: 'Spots',
-		}
+		// navigationOptions: {
+		// 	title: 'Spots',
+		// }
+		navigationOptions: ({ screenProps }) => ({
+		  title: 'Spots',
+		}),
 	},
 	SpotShow: {
     screen: SpotShow,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({ navigation, screenProps }) => ({
       title: `${navigation.state.params.name}`,
     }),
   },
@@ -28,13 +31,13 @@ export const SpotStack = StackNavigator({
 export const MapStack = StackNavigator({
 	Map: {
 		screen: Map,
-		navigationOptions: {
-			title: 'SkateMap',
-		}
+		navigationOptions: ({ screenProps }) => ({
+		  title: 'SkateMap',
+		}),
 	},
 	 MarkerShow: {
 	    screen: MarkerShow,
-	    navigationOptions: ({ navigation }) => ({
+	    navigationOptions: ({ navigation, screenProps }) => ({
 	      title: `${navigation.state.params.name}`,
 	    }),
 	  },
@@ -43,15 +46,15 @@ export const MapStack = StackNavigator({
 export const CreateMapStack = StackNavigator({
 	CreateMap: {
 		screen: CreateMap,
-		navigationOptions: {
-			title: 'Drag Marker To Spot',
-		}
+		navigationOptions: ({ screenProps }) => ({
+		  title: 'Drag Marker to Spot',
+		}),
 	},
 	CreateForm: {
 		screen: CreateForm,
-		navigationOptions: {
-			title: 'Spot Details',
-		}
+		navigationOptions: ({ screenProps }) => ({
+      title: 'Spot Details',
+    }),
 	}
 });
 

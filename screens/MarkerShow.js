@@ -13,6 +13,7 @@ export default class MarkerShow extends Component {
 	render() {
 		// Imports parameters from spot list
 		const { name, desc, key } = this.props.navigation.state.params;
+		const { user } = this.props.screenProps.user;
 
 
 		return(

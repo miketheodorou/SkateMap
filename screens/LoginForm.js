@@ -35,13 +35,14 @@ export default class LoginForm extends Component {
     render() {
         return(
             <View style={styles.container}>
+                <Text style={styles.skatemap}>SkateMap</Text>
+            <View style={styles.container}>
                 <FormLabel>Email</FormLabel>
                 <FormInput 
                     onChangeText={event => this.onEmailChange(event)}/>
                 <FormLabel>Password</FormLabel>
                 <FormInput 
                 onChangeText={event => this.onPasswordChange(event)} />
-                <View style={styles.buttonContainer}>
                     <TouchableHighlight
                         style={styles.button}
                         onPress={() => this.props.handleLogin(this.state.email, this.state.password)}>
@@ -52,13 +53,18 @@ export default class LoginForm extends Component {
                         onPress={() => this.props.handleSignup(this.state.email, this.state.password)}>
                         <Text style={styles.buttonText}>Sign Up</Text>
                     </TouchableHighlight>
-                </View>
             </View>
+        </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    skatemap: {
+        fontWeight: '800',
+        fontSize: 70,
+        textAlign: 'center',
+    },
     container: {
         marginTop: 100,
         flex: 1,

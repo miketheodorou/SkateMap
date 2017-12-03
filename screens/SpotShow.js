@@ -10,9 +10,27 @@ import {
 
 export default class SpotShow extends Component {
 
+	deleteSpot = (key) => {
+		fetch('https://skate-map-4d126.firebaseio.com/spots/' +  key + '.json', {
+		  method: 'DELETE',
+		  headers: {
+		    'Accept': 'application/json',
+		    'Content-Type': 'application/json',
+		  }
+		});
+		this.props.navigation.navigate('Spots');
+	}
+
 	render() {
 		// Imports parameters from spot list
-		const { name, desc, key } = this.props.navigation.state.params;
+		const { name, desc, key, user } = this.props.navigation.state.params;
+		const { currentUser } = this.props.screenProps;
+
+		let deleteButton;
+
+		if (currentUser == user) {
+			deleteButton = <Button title="Delete" onPress={() => this.deleteSpot(key)} />
+		}
 
 
 		return(
@@ -20,6 +38,9 @@ export default class SpotShow extends Component {
 				<Text style={styles.welcome}>{name}</Text>
 				<Text style={styles.container}>{desc}</Text>
 				<Text style={styles.container}>{key}</Text>
+				<Text style={styles.container}>{user}</Text>
+				<Text style={styles.container}>{currentUser}</Text>
+				{deleteButton}				
 			</View>
 		);
 	}
