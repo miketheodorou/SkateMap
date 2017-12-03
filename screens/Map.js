@@ -44,6 +44,11 @@ export default class Map extends Component <{}> {
 	  });
 	}
 
+	onLearnMore = (marker) => {
+		this.props.navigation.navigate('MarkerShow', {...marker});
+		console.log('pressed');
+	}
+
 	// Fetches all spots and and fills markers
 	// fetchMarkers = async () => {
 	// 	const response = await fetch('https://skate-map-4d126.firebaseio.com/spots.json');
@@ -72,7 +77,14 @@ export default class Map extends Component <{}> {
 							key={i}
 							coordinate={marker.coordinate}
 							title={marker.name}
-							description={marker.desc} />
+							description={marker.desc}> 
+							<MapView.Callout>
+							    <View style={styles.callout}>
+							    	<Text>{marker.name}</Text>
+							      <Button title='View Spot' onPress={() => this.onLearnMore(marker)} />
+							    </View>
+							  </MapView.Callout>
+							</MapView.Marker>
 						))}
 				</MapView>
 		)
