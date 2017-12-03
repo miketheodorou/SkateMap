@@ -48,7 +48,9 @@ export default class CreateForm extends Component {
 		    },
 		    body: JSON.stringify(this.state)
 		  });
-	}
+		  this.props.navigation.navigate('CreateMap');
+
+	};
 
 	render() {
 		// Imports coordinates for pin from CreateMap page

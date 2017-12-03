@@ -8,6 +8,7 @@ import Map from '../screens/Map';
 import CreateMap from '../screens/CreateMap';
 import SpotShow from '../screens/SpotShow';
 import CreateForm from '../screens/CreateForm';
+import MarkerShow from '../screens/MarkerShow';
 
 export const SpotStack = StackNavigator({
 	Spots: {
@@ -17,11 +18,11 @@ export const SpotStack = StackNavigator({
 		}
 	},
 	SpotShow: {
-		screen: SpotShow,
-		navigationOptions: {
-			title: 'Spot Name',
-		}
-	}
+    screen: SpotShow,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.name}`,
+    }),
+  },
 });
 
 export const MapStack = StackNavigator({
@@ -30,8 +31,14 @@ export const MapStack = StackNavigator({
 		navigationOptions: {
 			title: 'SkateMap',
 		}
-	}
-});
+	},
+	 MarkerShow: {
+	    screen: MarkerShow,
+	    navigationOptions: ({ navigation }) => ({
+	      title: `${navigation.state.params.name}`,
+	    }),
+	  },
+	});
 
 export const CreateMapStack = StackNavigator({
 	CreateMap: {
