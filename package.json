@@ -9,7 +9,7 @@
 	"dependencies": {
 		"firebase": "^4.7.0",
 		"react": "16.0.0",
-		"react-native": "0.50.4",
+		"react-native": "0.49",
 		"react-native-elements": "^0.18.4",
 		"react-native-maps": "^0.18.2",
 		"react-native-tabbar-bottom": "^1.0.4",

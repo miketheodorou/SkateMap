@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Tabs } from './config/router';
+import { Login } from './screens/Login';
 
 import * as firebase from 'firebase';
 
@@ -19,6 +20,9 @@ export default class App2 extends Component {
 	  this.spotsRef = this.database.ref('/spots');
 	}
   render() {
-    return <Tabs />
+    return(
+    	<Login />
+    	// <Tabs />
+    );
   }
 }
