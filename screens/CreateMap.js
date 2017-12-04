@@ -23,10 +23,10 @@ export default class CreateMap extends Component<{}> {
 	  super(props);
 	  this.state = {
 	  	initialPosition: {
-			latitude: 0,
-			longitude: 0,
-			latitudeDelta: 0.0122,
-			longitudeDelta: 0.0101,
+				latitude: 0,
+				longitude: 0,
+				latitudeDelta: 0.0122,
+				longitudeDelta: 0.0101,
 		},
 	 	  /*
 	 	  // Sets initial marker location
@@ -35,10 +35,12 @@ export default class CreateMap extends Component<{}> {
 		  marker: {
 		   coordinate:{
 		    latitude: 0,
-		    longitude: 0,
+				longitude: 0,
 		   }
 		  }
 		}
+
+		this.intialPosition;
 	}
 
 	// updates the marker state when dragged
@@ -55,7 +57,7 @@ export default class CreateMap extends Component<{}> {
 		this.props.navigation.navigate('CreateForm', {...formCoordinate});
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		navigator.geolocation.getCurrentPosition((position) => {
 			let lat = parseFloat(position.coords.latitude);
 			let long = parseFloat(position.coords.longitude);
@@ -71,30 +73,13 @@ export default class CreateMap extends Component<{}> {
 				marker: {coordinate: initialRegion}
 			});
 			this.setState({initialPosition: initialRegion})
-		},
-		(error) => alert(JSON.stringify(error)),
-		{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
-
-		this.watchID = navigator.geolocation.watchPosition((position) => {
-			let lat = parseFloat(position.coords.latitude);
-			let long = parseFloat(position.coords.longitude);
-
-			let lastRegion = {
-				latitude: lat,
-				longitude: long,
-				latitudeDelta: 0.0122,
-				longitudeDelta: 0.0101,
-			}
-			this.setState({
-				marker: {coordinate: lastRegion}
-			});
-			this.setState({initialPosition: lastRegion});
-		})
+		});
 	}
 
 	componentWillUnmount() {
 		navigator.gelocation.clearWatch(this.watchID);
 	}
+
 
 	WatchID: ?number = null
 
@@ -102,7 +87,7 @@ export default class CreateMap extends Component<{}> {
 		return(
 			<MapView
 			style={styles.map}
-			region={this.state.initialPosition}>
+			initialRegion={this.state.initialPosition}>
 			  <MapView.Marker draggable
 			  	title={'Move Pin To Spot Location'}
 			    coordinate={this.state.marker.coordinate}

@@ -46,9 +46,7 @@ export default class CreateForm extends Component {
 			desc: event
 		});
 	}
-	componentDidMount() {
-		console.log(this.state);
-	}
+ 
 	
 	handleCheck(checked) {
 		console.log(checked);
