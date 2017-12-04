@@ -44,8 +44,8 @@ export const MapStack = StackNavigator({
 		  headerLeft: null
 		}),
 	},
-	 MarkerShow: {
-    screen: MarkerShow,
+	 SpotShow: {
+    screen: SpotShow,
     navigationOptions: ({ navigation, screenProps }) => ({
       title: `${navigation.state.params.name}`,
     }),

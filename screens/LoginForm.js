@@ -43,16 +43,18 @@ export default class LoginForm extends Component {
                 <FormLabel>Password</FormLabel>
                 <FormInput 
                 onChangeText={event => this.onPasswordChange(event)} />
-                    <TouchableHighlight
-                        style={styles.button}
-                        onPress={() => this.props.handleLogin(this.state.email, this.state.password)}>
-                        <Text style={styles.buttonText}>Login</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight
-                        style={styles.button}
-                        onPress={() => this.props.handleSignup(this.state.email, this.state.password)}>
-                        <Text style={styles.buttonText}>Sign Up</Text>
-                    </TouchableHighlight>
+                    <View style={styles.buttonContainer}>
+                        <TouchableHighlight
+                            style={styles.button}
+                            onPress={() => this.props.handleLogin(this.state.email, this.state.password)}>
+                            <Text style={styles.buttonText}>Login</Text>
+                        </TouchableHighlight>
+                        <TouchableHighlight
+                            style={styles.button}
+                            onPress={() => this.props.handleSignup(this.state.email, this.state.password)}>
+                            <Text style={styles.buttonText}>Sign Up</Text>
+                        </TouchableHighlight>
+                    </View>
             </View>
         </View>
         );
@@ -61,7 +63,7 @@ export default class LoginForm extends Component {
 
 const styles = StyleSheet.create({
     skatemap: {
-        fontWeight: '800',
+        fontWeight: '500',
         fontSize: 70,
         textAlign: 'center',
     },
@@ -72,20 +74,18 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flex: 1,
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
     },
     button: {
-        marginTop: 30,
-        marginLeft: 70,
-        marginRight: 70,
         padding: 20,
         backgroundColor: "#7FDBFF",
         borderRadius: 10,
-
     },
     buttonText: {
         color: '#FFF',
         fontSize: 30,
         textAlign: 'center',
-    }
+    },
 });

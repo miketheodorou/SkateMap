@@ -55,11 +55,10 @@ export default class SpotShow extends Component {
 			<View style={styles.container}>
 				<Text style={styles.welcome}>{name}</Text>
 				<Text style={styles.container}>{desc}</Text>
-				<Text style={styles.container}>{key}</Text>
-				<Text style={styles.container}>{user}</Text>
-				<Text style={styles.container}>{currentUser}</Text>
-				{editButton}
-				{deleteButton}				
+				<View style={styles.buttonsContainer}>
+					{editButton}
+					{deleteButton}	
+				</View>			
 			</View>
 		);
 	}
@@ -90,5 +89,11 @@ const styles = StyleSheet.create({
 		color: '#FFF',
 		fontSize: 30,
 		textAlign: 'center',
-	}
+	},
+	buttonsContainer: {
+	    flex: 1,
+	    flexDirection: 'row',
+	    justifyContent: 'space-around',
+	    alignItems: 'center'
+	},
 });

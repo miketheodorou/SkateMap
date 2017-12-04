@@ -49,20 +49,6 @@ export default class EditSpot extends Component {
 		this.props.navigation.navigate('Spots');
 	};
 
-
-
-	// saveSpot = (key) => {
-	// 	fetch('https://skate-map-4d126.firebaseio.com/spots/' +  key + '.json', {
-	// 	  method: 'POST',
-	// 	  headers: {
-	// 	    'Accept': 'application/json',
-	// 	    'Content-Type': 'application/json',
-	// 	  },
-	// 	  body: this.state
-	// 	});
-	// 	this.props.navigation.navigate('Spots');
-	// }
-
 	render() {
 
 		const { name, desc, key, user, coordinate } = this.props.navigation.state.params;
@@ -84,9 +70,6 @@ export default class EditSpot extends Component {
 						onPress={() => this.saveSpot(key, this.state.name, this.state.desc, this.state.user, this.state.coordinate)}>
 						<Text style={styles.buttonText}>Save Changes</Text>
 					</TouchableHighlight>
-				<Text style={styles.container}>{key}</Text>
-				<Text style={styles.container}>{user}</Text>
-				<Text style={styles.container}>{currentUser}</Text>
 			</View>
 		);
 	}
