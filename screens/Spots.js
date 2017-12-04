@@ -34,14 +34,12 @@ export default class Spots extends Component<{}> {
 
   getSpots = () => {
     this.spotsRef.on('value', (snapshot) => {
-    console.log(snapshot.val());
     let fetchedSpots = [];
     snapshot.forEach(childSnapshot => {
         let item = childSnapshot.val(); 
         item.key = childSnapshot.key;
         fetchedSpots.push(item);
     });
-    console.log(fetchedSpots);
     this.setState({spots: fetchedSpots})
     });
   }

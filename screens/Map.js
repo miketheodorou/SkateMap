@@ -5,10 +5,19 @@ import {
   Text,
   Image,
   Button,
+  Dimensions
 } from 'react-native';
 import * as firebase from 'firebase';
 
 import MapView from 'react-native-maps';
+
+const {width, height} = Dimensions.get('window');
+
+const SCREEN_HEIGHT = height;
+const SCREEN_WIDTH = width;
+const ASPECT_RATIO = width / height;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export default class Map extends Component <{}> {
 	constructor(props){
@@ -18,60 +27,92 @@ export default class Map extends Component <{}> {
 	}
 
 	state = {
+		initialPosition: {
+			latitude: 0,
+			longitude: 0,
+			latitudeDelta: 0,
+			longitudeDelta: 0,
+		},
+		markerPosition: {
+			latitude: 0,
+			longitude: 0,
+		},
 		markers : []
 	}
 
 	// Calls the grab spots function 
-	componentWillMount() {
+	// componentWillMount() {
+	// 	this.fetchMarkers();
+	// }
+
+	componentDidMount() {
+		navigator.geolocation.getCurrentPosition((position) => {
+			let lat = parseFloat(position.coords.latitude);
+			let long = parseFloat(position.coords.longitude);
+
+			let initialRegion = {
+				latitude: lat,
+				longitude: long,
+				latitudeDelta: LATITUDE_DELTA,
+				longitudeDelta: LONGITUDE_DELTA
+			}
+			console.log(initialRegion);
+			this.setState({initialPosition: initialRegion});
+			this.setState({markerPosition: initialRegion})
+		},
+		(error) => alert(JSON.stringify(error)),
+		{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
+
+		this.watchID = navigator.geolocation.watchPosition((position) => {
+			let lat = parseFloat(position.coords.latitude);
+			let long = parseFloat(position.coords.longitude);
+
+			let lastRegion = {
+				latitude: lat,
+				longitude: long,
+				latitudeDelta: LATITUDE_DELTA,
+				longitudeDelta: LONGITUDE_DELTA
+			}
+
+			this.setState({initialPosition: lastRegion});
+			this.setState({markerPosition: lastRegion});
+		})
 		this.fetchMarkers();
 	}
 
-	componentDidMount() {
-		this.fetchMarkers();
+	componentWillUnmount() {
+		navigator.gelocation.clearWatch(this.watchID);
 	}
 
 	fetchMarkers = () => {
 	  this.markersRef.on('value', (snapshot) => {
-	  console.log(snapshot.val());
 	  let fetchedMarkers = [];
 	  snapshot.forEach(childSnapshot => {
 	      let item = childSnapshot.val(); 
 	      item.key = childSnapshot.key;
 	      fetchedMarkers.push(item);
 	  });
-	  console.log(fetchedMarkers);
 	  this.setState({markers: fetchedMarkers})
 	  });
 	}
 
 	onLearnMore = (marker) => {
 		this.props.navigation.navigate('SpotShow', {...marker});
-		console.log('pressed');
 	}
 
-	// Fetches all spots and and fills markers
-	// fetchMarkers = async () => {
-	// 	const response = await fetch('https://skate-map-4d126.firebaseio.com/spots.json');
-	// 	const json = await response.json();
-	// 	// console.log(json[Object.keys(json)[0]]);
-	// 	fetchedMarkers = [];
- //    for (let i = 0; i < Object.keys(json).length; i++) {
- //      fetchedMarkers.push(json[Object.keys(json)[i]])
- //    }
- //    // console.log(fetchedMarkers);
- //    this.setState({ markers: fetchedMarkers})
-	// }
+	WatchID: ?number = null
+
 
 	render() {
 		return(
 				<MapView
 					style={styles.map}
-					initialRegion={{
-						latitude: 39.749632,
-						longitude: -105.000363,
-						latitudeDelta: 0.1222,
-						longitudeDelta: 0.1201,
-					}}>
+					region={this.state.initialPosition}
+					>
+						<MapView.Marker
+							coordinate={this.state.markerPosition}
+							image={require('../images/skater.png')}>
+						 </MapView.Marker>
 					{this.state.markers.map((marker, i) => (
 						<MapView.Marker
 							key={i}
@@ -104,5 +145,14 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0,
 		bottom: 0,
+	},
+	radius: {
+		backgroundColor: 'green',
+		borderRadius: 10,
+	},
+	userMarker: {
+		backgroundColor: 'blue',
+		borderRadius: 10,
+		borderColor: 'white',
 	}
 })

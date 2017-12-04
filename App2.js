@@ -35,7 +35,6 @@ export default class App2 extends Component {
 
 	// Handles login functionality
 	handleLogin = (email, pass) => {
-	    console.log(this.state);
 	    const auth = firebase.auth();
 	    const promise = auth.signInWithEmailAndPassword(email, pass);
 	    promise.then((res) => {
@@ -47,7 +46,6 @@ export default class App2 extends Component {
 
 	// Handles signup functionality
 	handleSignup = (email, pass) => {
-	    console.log(this.state);
 	    const auth = firebase.auth();
 	    const promise = auth.createUserWithEmailAndPassword(email, pass);
 	    promise.then((res) => {
