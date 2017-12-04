@@ -17,13 +17,28 @@ export default class CreateForm extends Component {
 		coordinate: this.props.navigation.state.params,
 		name: '',
 		desc: '',
-		user: this.props.screenProps.currentUser
+		user: this.props.screenProps.currentUser,
+		Handrails: false,
+		Banks: false,
+		Flatledges: false,
+		Gap: false,
+		Quarterpipe: false,
+		Wallride: false,
+		ManualPads: false,
+		Spine: false,
+		Halfpipe: false,
+		Hips: false,
+		PoleJam: false,
+		Stairset: false,
+		FlatRail: false,
+		Picnictable: false,
 	}
 
 	onNameChange(event) {
 		this.setState({
 			name: event
 		});
+		console.log(this.state);
 	}
 
 	onDescChange(event) {
@@ -31,9 +46,23 @@ export default class CreateForm extends Component {
 			desc: event
 		});
 	}
+	componentDidMount() {
+		console.log(this.state);
+	}
+	
+	handleCheck(checked) {
+		console.log(checked);
+		console.log(checked.label);
+		console.log(checked.checked);
+		let feature = checked.label;
+		let val = checked.checked;
+		this.setState({
+			[feature]: val
+		});
+	}
 
 	handleSave = () => {
-		console.log(this.state);
+		// console.log(this.state);
 		  fetch('https://skate-map-4d126.firebaseio.com/spots.json', {
 		    method: 'POST',
 		    headers: {
@@ -44,13 +73,13 @@ export default class CreateForm extends Component {
 		  });
 		  this.props.navigation.navigate('CreateMap');
 
-	};
+	}
 
 	render() {
 		// Imports coordinates for pin from CreateMap page
-		console.log(this.state.coordinate);
+		// console.log(this.state.coordinate);
 		const { latitude, longitude } = this.props.navigation.state.params;
-		console.log(this.props.screenProps.currentUser);
+		// console.log(this.props.screenProps.currentUser);
 		const { currentUser } = this.props.screenProps;
 
 
@@ -65,82 +94,92 @@ export default class CreateForm extends Component {
 					onChangeText={event => this.onDescChange(event)} />
 				</View>
 				<View style={styles.featuresContainer}>
-					<View style={styles.featuresTextBox}>
-						<Text style={styles.featuresText}>Features</Text>
-					</View>
 					<View style={styles.featuresContent}>
 						<View style={styles.featureColumn}>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="Handrails"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)} />
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="Banks"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)} 
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="Flatledges"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="Gap"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="Quarterpipe"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="Wallride"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
-									label="Manual Pads"
-									onChange={(checked) => console.log('checked')} />
+									label="ManualPads"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 						</View>
 						<View style={styles.featureColumn}>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="Spine"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="Halfpipe"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="Hips"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
-									label="Pole Jam"
-									onChange={(checked) => console.log('checked')} />
+									label="PoleJam"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="Stairset"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
 									label="FlatRail"
-									onChange={(checked) => console.log('checked')} />
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
-									label="Picknictable"
-									onChange={(checked) => console.log('checked')} />
+									label="Picnictable"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
 							</View>
 						</View>
 					</View>
@@ -178,6 +217,7 @@ const styles = StyleSheet.create({
 		marginTop: 20
 	},
 	button: {
+		marginTop: 5,
 		padding: 10,
 		width: '40%',
 		backgroundColor: "#7FDBFF",
@@ -206,7 +246,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	featureColumn: {
-		
 	},
 	checkBoxContainer: {
 		margin: 5,
