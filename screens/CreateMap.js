@@ -67,10 +67,10 @@ export default class CreateMap extends Component<{}> {
 				longitudeDelta: 0.0101,
 			}
 			console.log(initialRegion);
-			this.setState({initialPosition: initialRegion});
 			this.setState({
 				marker: {coordinate: initialRegion}
 			});
+			this.setState({initialPosition: initialRegion})
 		},
 		(error) => alert(JSON.stringify(error)),
 		{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
@@ -85,11 +85,10 @@ export default class CreateMap extends Component<{}> {
 				latitudeDelta: 0.0122,
 				longitudeDelta: 0.0101,
 			}
-
-			this.setState({initialPosition: lastRegion});
 			this.setState({
 				marker: {coordinate: lastRegion}
 			});
+			this.setState({initialPosition: lastRegion});
 		})
 	}
 
