@@ -21,6 +21,7 @@ export default class App2 extends Component {
 	  this.spotsRef = this.database.ref('/spots');
     this.state = {
       currentUser: null,
+      alert: '',
     };
 	}
 
@@ -39,7 +40,9 @@ export default class App2 extends Component {
 	    const promise = auth.signInWithEmailAndPassword(email, pass);
 	    promise.then((res) => {
 	    	this.setState({currentUser: res.providerData[0].uid});
-	    }).catch(e => console.log(e.message));
+	    }).catch(e => {
+	    	this.setState({ alert: e.message });
+	   });
 	};
 
 	// Handles signup functionality
@@ -49,14 +52,17 @@ export default class App2 extends Component {
 	    const promise = auth.createUserWithEmailAndPassword(email, pass);
 	    promise.then((res) => {
 	    	this.setState({currentUser: res.providerData[0].uid});
-	    }).catch(e => console.log(e.message));
+	    }).catch(e => {
+	    	this.setState({ alert: e.message });
+	   });
 	};
 
   render() {
   	if (!this.state.currentUser) {
 	      return <LoginForm
 	      					handleLogin={this.handleLogin}
-	      					handleSignup={this.handleSignup}/>;
+	      					handleSignup={this.handleSignup}
+	      					alert={this.state.alert}/>;
 	    } else {
   	return <Tabs 
   						screenProps={{currentUser: this.state.currentUser}}/>

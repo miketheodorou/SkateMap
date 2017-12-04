@@ -41,7 +41,7 @@ export default class CreateForm extends Component {
 		    },
 		    body: JSON.stringify(this.state)
 		  });
-		  this.props.navigation.navigate('Spots');
+		  this.props.navigation.navigate('CreateMap');
 
 	};
 

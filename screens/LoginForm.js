@@ -16,6 +16,7 @@ export default class LoginForm extends Component {
     state = {
         email: '',
         password: '',
+        error: '',
     }
 
     onEmailChange(event) {
@@ -43,6 +44,7 @@ export default class LoginForm extends Component {
                 <FormLabel>Password</FormLabel>
                 <FormInput 
                 onChangeText={event => this.onPasswordChange(event)} />
+                <Text style={styles.alert}>{this.props.alert}</Text>
                     <View style={styles.buttonContainer}>
                         <TouchableHighlight
                             style={styles.button}
@@ -88,4 +90,10 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlign: 'center',
     },
+    alert: {
+        color: 'red',
+        marginTop: 10,
+        textAlign: 'center',
+
+    }
 });
