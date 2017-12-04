@@ -10,6 +10,8 @@ import {
   TextInput
 } from 'react-native';
 
+import CheckBox from 'react-native-modest-checkbox';
+
 export default class SpotShow extends Component {
 
 	deleteSpot = (key) => {
@@ -30,7 +32,12 @@ export default class SpotShow extends Component {
 	render() {
 		// Imports parameters from spot list
 		const spot = this.props.navigation.state.params;
-		const { name, desc, key, user, coordinate } = this.props.navigation.state.params;
+		const { 
+		name, desc, key, user, coordinate,
+		Handrails, Banks, Flatledges, Gap, Quarterpipe,
+		Wallride, ManualPads, Spine, Halfpipe, Hips, PoleJam, 
+		Stairset, FlatRail, Picnictable  } = this.props.navigation.state.params;
+
 		const { currentUser } = this.props.screenProps;
 
 		let deleteButton;
@@ -50,11 +57,28 @@ export default class SpotShow extends Component {
 											<Text style={styles.buttonText}>Edit</Text>
 										</TouchableHighlight>
 		}
+		if (Handrails) {
+			handRails = <View style={styles.checkBoxContainer}>
+										<CheckBox 
+											label="Handrails"
+											checkBoxStyle={{display: 'none'}} />
+									</View>
+
+		}
 
 		return(
-			<View style={styles.container}>
-				<Text style={styles.welcome}>{name}</Text>
-				<Text style={styles.container}>{desc}</Text>
+			<View style={styles.mainContainer}>
+				<View style={styles.nameContainer}>
+					<Text style={styles.welcome}>{name}</Text>
+				</View>
+				<View style={styles.descContainer}>
+					<Text style={styles.container}>{desc}</Text>
+				</View>
+				<View style={styles.featuresContainer}>
+					<View style={styles.featuresContent}>
+						{handRails}
+					</View>
+				</View>
 				<View style={styles.buttonsContainer}>
 					{editButton}
 					{deleteButton}	
@@ -66,11 +90,35 @@ export default class SpotShow extends Component {
 
 
 const styles = StyleSheet.create({
-	container: {
-		marginTop: 35,
+	mainContainer: {
 		flex: 1,
-		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	nameContainer: {
+		width: '100%',
+	},
+	descContainer: {
+		width: '100%',
+	},
+	featuresContainer: {
+		width: '100%',
+		alignItems: 'center',
+	},
+	buttonsContainer: {
+		flexDirection: 'row',
+		alignItems: 'center'
+	},
+	featuresContent: {
+		width: '100%',
+		padding: 10,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'center'
+	},
+	featureColumn: {
+	},
+	checkBoxContainer: {
+		margin: 5,
 	},
 	welcome: {
 	  fontSize: 20,
@@ -89,11 +137,5 @@ const styles = StyleSheet.create({
 		color: '#FFF',
 		fontSize: 30,
 		textAlign: 'center',
-	},
-	buttonsContainer: {
-	    flex: 1,
-	    flexDirection: 'row',
-	    justifyContent: 'space-around',
-	    alignItems: 'center'
 	},
 });
