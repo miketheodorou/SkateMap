@@ -69,95 +69,79 @@ export default class CreateForm extends Component {
 						<Text style={styles.featuresText}>Features</Text>
 					</View>
 					<View style={styles.featuresContent}>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
+						<View style={styles.featureColumn}>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Handrails"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Banks"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Flatledges"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Gap"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Quarterpipe"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Wallride"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Manual Pads"
+									onChange={(checked) => console.log('checked')} />
+							</View>
 						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
-						</View>
-						<View style={styles.checkBoxContainer}>
-							<CheckBox 
-								label="Feature"
-								onChange={(checked) => console.log('checked')} />
+						<View style={styles.featureColumn}>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Spine"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Halfpipe"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Hips"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Pole Jam"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Stairset"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="FlatRail"
+									onChange={(checked) => console.log('checked')} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Picknictable"
+									onChange={(checked) => console.log('checked')} />
+							</View>
 						</View>
 					</View>
 				</View>
@@ -186,6 +170,7 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		width: '100%',
 		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	featuresContainer: {
 		width: '100%',
@@ -193,16 +178,14 @@ const styles = StyleSheet.create({
 		marginTop: 20
 	},
 	button: {
-		marginTop: 30,
-		marginLeft: 70,
-		marginRight: 70,
-		padding: 20,
+		padding: 10,
+		width: '40%',
 		backgroundColor: "#7FDBFF",
 		borderRadius: 10,
 	},
 	buttonText: {
 		color: '#FFF',
-		fontSize: 30,
+		fontSize: 20,
 		textAlign: 'center',
 	},
 	featuresTextBox: {
@@ -222,8 +205,10 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap',
 		alignItems: 'center'
 	},
+	featureColumn: {
+		
+	},
 	checkBoxContainer: {
-		backgroundColor: 'red',
 		margin: 5,
 	}
 });
