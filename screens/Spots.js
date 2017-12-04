@@ -68,16 +68,3 @@ export default class Spots extends Component<{}> {
     )
   }
 }
-
-
-// fetchSpots = async () => {
-//   const response = await fetch('https://skate-map-4d126.firebaseio.com/spots.json');
-//   const json = await response.json();
-//   console.log(json);
-//   fetchedSpots = [];
-//   for (let i = 0; i < Object.keys(json).length; i++) {
-//     fetchedSpots.push(json[Object.keys(json)[i]])
-//   }
-//   console.log(fetchedSpots);
-//   this.setState({spots: fetchedSpots})
-// }

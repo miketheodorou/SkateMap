@@ -45,7 +45,7 @@ export default class Map extends Component <{}> {
 	}
 
 	onLearnMore = (marker) => {
-		this.props.navigation.navigate('MarkerShow', {...marker});
+		this.props.navigation.navigate('SpotShow', {...marker});
 		console.log('pressed');
 	}
 

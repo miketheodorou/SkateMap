@@ -9,14 +9,6 @@ import {
   TouchableHighlight
 } from 'react-native';
 import { FormLabel, FormInput } from 'react-native-elements';
-// import t from 'tcomb-form-native';
-
-// const Spot = t.struct({
-//   name: t.String,
-//   desc: t.String,
-//   password: t.String,
-//   terms: t.Boolean
-// });
 
 export default class CreateForm extends Component {
 
@@ -24,6 +16,7 @@ export default class CreateForm extends Component {
 		coordinate: this.props.navigation.state.params,
 		name: '',
 		desc: '',
+		user: this.props.screenProps.currentUser
 	}
 
 	onNameChange(event) {
@@ -48,7 +41,7 @@ export default class CreateForm extends Component {
 		    },
 		    body: JSON.stringify(this.state)
 		  });
-		  this.props.navigation.navigate('CreateMap');
+		  this.props.navigation.navigate('Spots');
 
 	};
 
@@ -56,6 +49,9 @@ export default class CreateForm extends Component {
 		// Imports coordinates for pin from CreateMap page
 		console.log(this.state.coordinate);
 		const { latitude, longitude } = this.props.navigation.state.params;
+		console.log(this.props.screenProps.currentUser);
+		const { currentUser } = this.props.screenProps;
+
 
 		return(
 			<View style={styles.container}>
@@ -94,7 +90,6 @@ const styles = StyleSheet.create({
 		padding: 20,
 		backgroundColor: "#7FDBFF",
 		borderRadius: 10,
-
 	},
 	buttonText: {
 		color: '#FFF',

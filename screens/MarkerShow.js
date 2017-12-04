@@ -10,16 +10,38 @@ import {
 
 export default class MarkerShow extends Component {
 
+	deleteSpot = (key) => {
+		fetch('https://skate-map-4d126.firebaseio.com/spots/' +  key + '.json', {
+		  method: 'DELETE',
+		  headers: {
+		    'Accept': 'application/json',
+		    'Content-Type': 'application/json',
+		  }
+		});
+		this.props.navigation.navigate('Spots');
+	}
+
 	render() {
 		// Imports parameters from spot list
-		const { name, desc, key } = this.props.navigation.state.params;
+		const { name, desc, key, user } = this.props.navigation.state.params;
+		const { currentUser } = this.props.screenProps;
+
+		let deleteButton;
+		let editButton;
+
+		if (currentUser == user) {
+			deleteButton = <Button title="Delete" onPress={() => this.deleteSpot(key)} />
+		}
 
 
 		return(
-			<View style={styles.container}>
+			<View style={styles.container}>	
 				<Text style={styles.welcome}>{name}</Text>
 				<Text style={styles.container}>{desc}</Text>
 				<Text style={styles.container}>{key}</Text>
+				<Text style={styles.container}>{user}</Text>
+				<Text style={styles.container}>{currentUser}</Text>
+				{deleteButton}				
 			</View>
 		);
 	}

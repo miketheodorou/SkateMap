@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator, NavigationActions } from 'react-navigation';
 import { Image, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
 
@@ -9,17 +9,28 @@ import CreateMap from '../screens/CreateMap';
 import SpotShow from '../screens/SpotShow';
 import CreateForm from '../screens/CreateForm';
 import MarkerShow from '../screens/MarkerShow';
+import EditSpot from '../screens/EditSpot';
 
 export const SpotStack = StackNavigator({
 	Spots: {
 		screen: Spots,
-		navigationOptions: {
-			title: 'Spots',
-		}
+		// navigationOptions: {
+		// 	title: 'Spots',
+		// }
+		navigationOptions: ({ screenProps }) => ({
+		  title: 'Spots',
+		  headerLeft: null
+		}),
 	},
 	SpotShow: {
     screen: SpotShow,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({ navigation, screenProps }) => ({
+      title: `${navigation.state.params.name}`,
+    }),
+  },
+  EditSpot: {
+    screen: EditSpot,
+    navigationOptions: ({ navigation, screenProps }) => ({
       title: `${navigation.state.params.name}`,
     }),
   },
@@ -28,30 +39,38 @@ export const SpotStack = StackNavigator({
 export const MapStack = StackNavigator({
 	Map: {
 		screen: Map,
-		navigationOptions: {
-			title: 'SkateMap',
-		}
+		navigationOptions: ({ screenProps }) => ({
+		  title: 'SkateMap',
+		  headerLeft: null
+		}),
 	},
-	 MarkerShow: {
-	    screen: MarkerShow,
-	    navigationOptions: ({ navigation }) => ({
-	      title: `${navigation.state.params.name}`,
-	    }),
-	  },
+	 SpotShow: {
+    screen: SpotShow,
+    navigationOptions: ({ navigation, screenProps }) => ({
+      title: `${navigation.state.params.name}`,
+    }),
+  },
+  EditSpot: {	
+	  screen: EditSpot,
+	  navigationOptions: ({ navigation, screenProps }) => ({
+	    title: `${navigation.state.params.name}`,
+	  }),
+  },
 	});
 
 export const CreateMapStack = StackNavigator({
 	CreateMap: {
 		screen: CreateMap,
-		navigationOptions: {
-			title: 'Drag Marker To Spot',
-		}
+		navigationOptions: ({ screenProps }) => ({
+		  title: 'Drag Marker to Spot',
+		  headerLeft: null
+		}),
 	},
 	CreateForm: {
 		screen: CreateForm,
-		navigationOptions: {
-			title: 'Spot Details',
-		}
+		navigationOptions: ({ screenProps }) => ({
+      title: 'Spot Details',
+    }),
 	}
 });
 
