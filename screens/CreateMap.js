@@ -25,8 +25,8 @@ export default class CreateMap extends Component<{}> {
 	  	initialPosition: {
 			latitude: 0,
 			longitude: 0,
-			latitudeDelta: 0,
-			longitudeDelta: 0,
+			latitudeDelta: 0.0122,
+			longitudeDelta: 0.0101,
 		},
 	 	  /*
 	 	  // Sets initial marker location
@@ -63,8 +63,8 @@ export default class CreateMap extends Component<{}> {
 			let initialRegion = {
 				latitude: lat,
 				longitude: long,
-				latitudeDelta: LATITUDE_DELTA,
-				longitudeDelta: LONGITUDE_DELTA
+				latitudeDelta: 0.0122,
+				longitudeDelta: 0.0101,
 			}
 			console.log(initialRegion);
 			this.setState({initialPosition: initialRegion});
@@ -82,8 +82,8 @@ export default class CreateMap extends Component<{}> {
 			let lastRegion = {
 				latitude: lat,
 				longitude: long,
-				latitudeDelta: LATITUDE_DELTA,
-				longitudeDelta: LONGITUDE_DELTA
+				latitudeDelta: 0.0122,
+				longitudeDelta: 0.0101,
 			}
 
 			this.setState({initialPosition: lastRegion});
