@@ -14,7 +14,7 @@ const firebaseConfig = {
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-export default class App2 extends Component {
+export default class App extends Component {
 	constructor(props){
 	  super(props);
 	  this.database = firebase.database();

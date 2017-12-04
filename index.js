@@ -1,5 +1,5 @@
 import { AppRegistry } from 'react-native';
 // import App from './App';
-import App2 from './App2';
+import App from './App';
 
-AppRegistry.registerComponent('SkateMap', () => App2);
+AppRegistry.registerComponent('SkateMap', () => App);
