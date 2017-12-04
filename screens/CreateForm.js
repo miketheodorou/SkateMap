@@ -9,6 +9,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import { FormLabel, FormInput } from 'react-native-elements';
+import CheckBox from 'react-native-modest-checkbox';
 
 export default class CreateForm extends Component {
 
@@ -54,13 +55,112 @@ export default class CreateForm extends Component {
 
 
 		return(
-			<View style={styles.container}>
-				<FormLabel>Name</FormLabel>
-				<FormInput 
-					onChangeText={event => this.onNameChange(event)}/>
-				<FormLabel>Description</FormLabel>
-				<FormInput 
-				onChangeText={event => this.onDescChange(event)} />
+			<View style={styles.manincontainer}>
+				<View style={styles.formContainer}>
+					<FormLabel>Name</FormLabel>
+					<FormInput 
+						onChangeText={event => this.onNameChange(event)}/>
+					<FormLabel>Description</FormLabel>
+					<FormInput 
+					onChangeText={event => this.onDescChange(event)} />
+				</View>
+				<View style={styles.featuresContainer}>
+					<View style={styles.featuresTextBox}>
+						<Text style={styles.featuresText}>Features</Text>
+					</View>
+					<View style={styles.featuresContent}>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+						<View style={styles.checkBoxContainer}>
+							<CheckBox 
+								label="Feature"
+								onChange={(checked) => console.log('checked')} />
+						</View>
+					</View>
+				</View>
 				<View style={styles.buttonContainer}>
 					<TouchableHighlight
 						style={styles.button}
@@ -74,14 +174,23 @@ export default class CreateForm extends Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
+	maincontainer: {
 		marginTop: 20,
 		flex: 1,
 		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	formContainer: {
+		width: '100%',
 	},
 	buttonContainer: {
-		flex: 1,
+		width: '100%',
 		justifyContent: 'center',
+	},
+	featuresContainer: {
+		width: '100%',
+		alignItems: 'center',
+		marginTop: 20
 	},
 	button: {
 		marginTop: 30,
@@ -95,5 +204,26 @@ const styles = StyleSheet.create({
 		color: '#FFF',
 		fontSize: 30,
 		textAlign: 'center',
+	},
+	featuresTextBox: {
+		width: '100%',
+		height: 20,
+		alignItems: 'center'
+	},
+	feturesText: {
+		fontSize: 30,
+		fontWeight: '800',
+		textAlign: 'center',
+	},
+	featuresContent: {
+		width: '100%',
+		padding: 10,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'center'
+	},
+	checkBoxContainer: {
+		backgroundColor: 'red',
+		margin: 5,
 	}
 });
