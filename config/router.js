@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator, NavigationActions } from 'react-navigation';
 import { Image, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
 
@@ -9,6 +9,7 @@ import CreateMap from '../screens/CreateMap';
 import SpotShow from '../screens/SpotShow';
 import CreateForm from '../screens/CreateForm';
 import MarkerShow from '../screens/MarkerShow';
+import EditSpot from '../screens/EditSpot';
 
 export const SpotStack = StackNavigator({
 	Spots: {
@@ -18,10 +19,17 @@ export const SpotStack = StackNavigator({
 		// }
 		navigationOptions: ({ screenProps }) => ({
 		  title: 'Spots',
+		  headerLeft: null
 		}),
 	},
 	SpotShow: {
     screen: SpotShow,
+    navigationOptions: ({ navigation, screenProps }) => ({
+      title: `${navigation.state.params.name}`,
+    }),
+  },
+  EditSpot: {
+    screen: EditSpot,
     navigationOptions: ({ navigation, screenProps }) => ({
       title: `${navigation.state.params.name}`,
     }),
@@ -33,14 +41,21 @@ export const MapStack = StackNavigator({
 		screen: Map,
 		navigationOptions: ({ screenProps }) => ({
 		  title: 'SkateMap',
+		  headerLeft: null
 		}),
 	},
 	 MarkerShow: {
-	    screen: MarkerShow,
-	    navigationOptions: ({ navigation, screenProps }) => ({
-	      title: `${navigation.state.params.name}`,
-	    }),
-	  },
+    screen: MarkerShow,
+    navigationOptions: ({ navigation, screenProps }) => ({
+      title: `${navigation.state.params.name}`,
+    }),
+  },
+  EditSpot: {	
+	  screen: EditSpot,
+	  navigationOptions: ({ navigation, screenProps }) => ({
+	    title: `${navigation.state.params.name}`,
+	  }),
+  },
 	});
 
 export const CreateMapStack = StackNavigator({
@@ -48,6 +63,7 @@ export const CreateMapStack = StackNavigator({
 		screen: CreateMap,
 		navigationOptions: ({ screenProps }) => ({
 		  title: 'Drag Marker to Spot',
+		  headerLeft: null
 		}),
 	},
 	CreateForm: {

@@ -49,8 +49,8 @@ export default class CreateForm extends Component {
 		// Imports coordinates for pin from CreateMap page
 		console.log(this.state.coordinate);
 		const { latitude, longitude } = this.props.navigation.state.params;
-		console.log(this.props.screenProps.user);
-		const { user } = this.props.screenProps.user;
+		console.log(this.props.screenProps.currentUser);
+		const { currentUser } = this.props.screenProps;
 
 
 		return(
@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
 		padding: 20,
 		backgroundColor: "#7FDBFF",
 		borderRadius: 10,
-
 	},
 	buttonText: {
 		color: '#FFF',
