@@ -5,32 +5,37 @@ import {
   Text,
   Image,
   Button,
+  Dimensions
 } from 'react-native';
 
 import MapView from 'react-native-maps';
+
+const {width, height} = Dimensions.get('window');
+
+const SCREEN_HEIGHT = height;
+const SCREEN_WIDTH = width;
+const ASPECT_RATIO = width / height;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export default class CreateMap extends Component<{}> {
 	constructor(props) {
 	  super(props);
 	  this.state = {
-	  	/* 
-	  	// Sets initial map region
-	  	// TODO: Set the initial region by geolocation
-	  	*/
-	    region: {
-		    latitude: 39.749632,
-				longitude: -105.000363,
-				latitudeDelta: 0.0222,
-				longitudeDelta: 0.0201,
-	 	  },
+	  	initialPosition: {
+			latitude: 0,
+			longitude: 0,
+			latitudeDelta: 0,
+			longitudeDelta: 0,
+		},
 	 	  /*
 	 	  // Sets initial marker location
 	 	  // TODO: Set the initial region by geolocation// 
 	 	  */
 		  marker: {
 		   coordinate:{
-		    latitude: 39.749632,
-		    longitude: -105.000363,
+		    latitude: 0,
+		    longitude: 0,
 		   }
 		  }
 		}
@@ -50,11 +55,55 @@ export default class CreateMap extends Component<{}> {
 		this.props.navigation.navigate('CreateForm', {...formCoordinate});
 	}
 
+	componentDidMount() {
+		navigator.geolocation.getCurrentPosition((position) => {
+			let lat = parseFloat(position.coords.latitude);
+			let long = parseFloat(position.coords.longitude);
+
+			let initialRegion = {
+				latitude: lat,
+				longitude: long,
+				latitudeDelta: LATITUDE_DELTA,
+				longitudeDelta: LONGITUDE_DELTA
+			}
+			console.log(initialRegion);
+			this.setState({initialPosition: initialRegion});
+			this.setState({
+				marker: {coordinate: initialRegion}
+			});
+		},
+		(error) => alert(JSON.stringify(error)),
+		{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
+
+		this.watchID = navigator.geolocation.watchPosition((position) => {
+			let lat = parseFloat(position.coords.latitude);
+			let long = parseFloat(position.coords.longitude);
+
+			let lastRegion = {
+				latitude: lat,
+				longitude: long,
+				latitudeDelta: LATITUDE_DELTA,
+				longitudeDelta: LONGITUDE_DELTA
+			}
+
+			this.setState({initialPosition: lastRegion});
+			this.setState({
+				marker: {coordinate: lastRegion}
+			});
+		})
+	}
+
+	componentWillUnmount() {
+		navigator.gelocation.clearWatch(this.watchID);
+	}
+
+	WatchID: ?number = null
+
 	render() {
 		return(
 			<MapView
 			style={styles.map}
-				initialRegion={this.state.region}>
+			region={this.state.initialPosition}>
 			  <MapView.Marker draggable
 			  	title={'Move Pin To Spot Location'}
 			    coordinate={this.state.marker.coordinate}
