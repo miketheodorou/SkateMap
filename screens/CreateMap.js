@@ -24,10 +24,10 @@ export default class CreateMap extends Component<{}> {
 	  super(props);
 	  this.state = {
 	  	initialPosition: {
-				latitude: 0,
-				longitude: 0,
-				latitudeDelta: 0.0122,
-				longitudeDelta: 0.0101,
+				latitude: 37.0902,
+				longitude: -95.7129,
+				latitudeDelta: 55.0122,
+				longitudeDelta: 55.0101,
 		},
 	 	  /*
 	 	  // Sets initial marker location
@@ -40,8 +40,6 @@ export default class CreateMap extends Component<{}> {
 		   }
 		  }
 		}
-
-		this.intialPosition;
 	}
 
 	// updates the marker state when dragged
@@ -70,10 +68,29 @@ export default class CreateMap extends Component<{}> {
 				longitudeDelta: 0.0101,
 			}
 			console.log(initialRegion);
+			this.setState({initialPosition: initialRegion})
 			this.setState({
 				marker: {coordinate: initialRegion}
 			});
+		});
+	}
+
+	componentDidMount() {
+		navigator.geolocation.getCurrentPosition((position) => {
+			let lat = parseFloat(position.coords.latitude);
+			let long = parseFloat(position.coords.longitude);
+
+			let initialRegion = {
+				latitude: lat,
+				longitude: long,
+				latitudeDelta: 0.0122,
+				longitudeDelta: 0.0101,
+			}
+			console.log(initialRegion);
 			this.setState({initialPosition: initialRegion})
+			this.setState({
+				marker: {coordinate: initialRegion}
+			});
 		});
 	}
 

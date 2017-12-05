@@ -88,7 +88,7 @@ export default class EditSpot extends Component {
 			PicnicTable: state.PicnicTable,
 
 		});
-		this.props.navigation.navigate('Spots');
+		this.props.navigation.navigate('Map');
 	};
 
 	render() {
