@@ -9,6 +9,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import { FormLabel, FormInput } from 'react-native-elements';
+import CheckBox from 'react-native-modest-checkbox';
 
 export default class CreateForm extends Component {
 
@@ -16,18 +17,45 @@ export default class CreateForm extends Component {
 		coordinate: this.props.navigation.state.params,
 		name: '',
 		desc: '',
-		user: this.props.screenProps.currentUser
+		user: this.props.screenProps.currentUser,
+		Handrails: false,
+		Banks: false,
+		Flatledges: false,
+		Gap: false,
+		Quarterpipe: false,
+		Wallride: false,
+		ManualPads: false,
+		Spine: false,
+		Halfpipe: false,
+		Kicker: false,
+		PoleJam: false,
+		Stairset: false,
+		FlatRail: false,
+		PicnicTable: false,
 	}
 
 	onNameChange(event) {
 		this.setState({
 			name: event
 		});
+		console.log(this.state);
 	}
 
 	onDescChange(event) {
 		this.setState({
 			desc: event
+		});
+	}
+ 
+	
+	handleCheck(checked) {
+		console.log(checked);
+		console.log(checked.label);
+		console.log(checked.checked);
+		let feature = checked.label;
+		let val = checked.checked;
+		this.setState({
+			[feature]: val
 		});
 	}
 
@@ -43,24 +71,117 @@ export default class CreateForm extends Component {
 		  });
 		  this.props.navigation.navigate('CreateMap');
 
-	};
+	}
 
 	render() {
 		// Imports coordinates for pin from CreateMap page
-		console.log(this.state.coordinate);
+		// console.log(this.state.coordinate);
 		const { latitude, longitude } = this.props.navigation.state.params;
-		console.log(this.props.screenProps.currentUser);
+		// console.log(this.props.screenProps.currentUser);
 		const { currentUser } = this.props.screenProps;
 
 
 		return(
-			<View style={styles.container}>
-				<FormLabel>Name</FormLabel>
-				<FormInput 
-					onChangeText={event => this.onNameChange(event)}/>
-				<FormLabel>Description</FormLabel>
-				<FormInput 
-				onChangeText={event => this.onDescChange(event)} />
+			<View style={styles.manincontainer}>
+				<View style={styles.formContainer}>
+					<FormLabel>Name</FormLabel>
+					<FormInput 
+						onChangeText={event => this.onNameChange(event)}/>
+					<FormLabel>Description</FormLabel>
+					<FormInput 
+						onChangeText={event => this.onDescChange(event)} />
+				</View>
+				<View style={styles.featuresContainer}>
+					<View style={styles.featuresContent}>
+						<View style={styles.featureColumn}>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Handrails"
+									onChange={(checked) => this.handleCheck(checked)} />
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Banks"
+									onChange={(checked) => this.handleCheck(checked)} 
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Flatledges"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Gap"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Quarterpipe"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Wallride"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="ManualPads"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+						</View>
+						<View style={styles.featureColumn}>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Spine"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Halfpipe"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Kicker"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="PoleJam"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="Stairset"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="FlatRail"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+							<View style={styles.checkBoxContainer}>
+								<CheckBox 
+									label="PicnicTable"
+									onChange={(checked) => this.handleCheck(checked)}
+									/>
+							</View>
+						</View>
+					</View>
+				</View>
 				<View style={styles.buttonContainer}>
 					<TouchableHighlight
 						style={styles.button}
@@ -74,26 +195,61 @@ export default class CreateForm extends Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
+	maincontainer: {
 		marginTop: 20,
 		flex: 1,
 		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	formContainer: {
+		width: '100%',
 	},
 	buttonContainer: {
-		flex: 1,
-		justifyContent: 'center',
+		width: '100%',
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+	},
+	featuresContainer: {
+		width: '100%',
+		alignItems: 'center',
+		marginTop: 20,
+		paddingTop: 30,
+		paddingRight: 30,
+		paddingBottom: 30,
+		paddingLeft: 40, 
 	},
 	button: {
-		marginTop: 30,
-		marginLeft: 70,
-		marginRight: 70,
-		padding: 20,
+		marginTop: 5,
+		padding: 10,
+		width: '40%',
 		backgroundColor: "#7FDBFF",
-		borderRadius: 10,
+		borderRadius: 5,
 	},
 	buttonText: {
 		color: '#FFF',
-		fontSize: 30,
+		fontSize: 20,
 		textAlign: 'center',
+	},
+	featuresTextBox: {
+		width: '100%',
+		height: 20,
+		alignItems: 'center'
+	},
+	feturesText: {
+		fontSize: 30,
+		fontWeight: '800',
+		textAlign: 'center',
+	},
+	featuresContent: {
+		width: '100%',
+		padding: 10,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'center'
+	},
+	featureColumn: {
+	},
+	checkBoxContainer: {
+		// margin: 5,
 	}
 });

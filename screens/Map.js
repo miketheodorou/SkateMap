@@ -5,7 +5,8 @@ import {
   Text,
   Image,
   Button,
-  Dimensions
+  Dimensions,
+	TouchableOpacity
 } from 'react-native';
 import * as firebase from 'firebase';
 
@@ -53,8 +54,8 @@ export default class Map extends Component <{}> {
 			let initialRegion = {
 				latitude: lat,
 				longitude: long,
-				latitudeDelta: LATITUDE_DELTA,
-				longitudeDelta: LONGITUDE_DELTA
+				latitudeDelta: 0.0122,
+				longitudeDelta: 0.0101,
 			}
 			console.log(initialRegion);
 			this.setState({initialPosition: initialRegion});
@@ -70,8 +71,8 @@ export default class Map extends Component <{}> {
 			let lastRegion = {
 				latitude: lat,
 				longitude: long,
-				latitudeDelta: LATITUDE_DELTA,
-				longitudeDelta: LONGITUDE_DELTA
+				latitudeDelta: 0.0122,
+				longitudeDelta: 0.0101,
 			}
 
 			this.setState({initialPosition: lastRegion});
@@ -121,8 +122,12 @@ export default class Map extends Component <{}> {
 							description={marker.desc}> 
 							<MapView.Callout>
 							    <View style={styles.callout}>
-							    	<Text>{marker.name}</Text>
-							      <Button title='View Spot' onPress={() => this.onLearnMore(marker)} />
+							    	<Text style={styles.spotTitle}>{marker.name}</Text>
+										<TouchableOpacity 
+											style={styles.button} 
+											onPress={() => this.onLearnMore(marker)}>
+											<Text style={styles.buttonText}>View Spot</Text>
+										</TouchableOpacity>
 							    </View>
 							  </MapView.Callout>
 							</MapView.Marker>
@@ -146,13 +151,18 @@ const styles = StyleSheet.create({
 		right: 0,
 		bottom: 0,
 	},
-	radius: {
-		backgroundColor: 'green',
-		borderRadius: 10,
+	button: {
+		backgroundColor: "#7FDBFF",
+		padding: 5
 	},
-	userMarker: {
-		backgroundColor: 'blue',
-		borderRadius: 10,
-		borderColor: 'white',
-	}
+	buttonText: {
+		color: "white",
+		textAlign: 'center',
+		fontSize: 15,
+		fontWeight: '600',
+	},
+	spotTitle: {
+		marginBottom: 3,
+		textAlign: 'center',
+	},
 })
