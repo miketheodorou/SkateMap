@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -11,6 +10,7 @@ import {
   TouchableOpacity,
   ImageBackground
 } from 'react-native';
+import * as firebase from 'firebase';
 
 const { width, height } = Dimensions.get("window");
 
@@ -20,6 +20,27 @@ const personIcon = require("../images/login1_person.png");
 const mark = require("../images/skate-cover.png");
 
 export default class Login2 extends Component {
+
+  state = {
+    email: '',
+    password: '',
+    error: '',
+}
+
+onEmailChange(event) {
+    this.setState({
+        email: event
+    });
+    console.log(this.state);
+}
+
+onPasswordChange(event) {
+    this.setState({
+        password: event
+    });
+    console.log(this.state);
+}
+
   render() {
     return (
       <View style={styles.container}>
@@ -33,9 +54,10 @@ export default class Login2 extends Component {
                 <Image source={personIcon} style={styles.icon} resizeMode="contain" />
               </View>
               <TextInput 
-                placeholder="Username" 
+                placeholder="Email" 
                 placeholderTextColor="#FFF"
-                style={styles.input} 
+                style={styles.input}
+                onChangeText={event => this.onEmailChange(event)} 
               />
             </View>
             <View style={styles.inputWrap}>
@@ -46,15 +68,23 @@ export default class Login2 extends Component {
                 placeholderTextColor="#FFF"
                 placeholder="Password" 
                 style={styles.input} 
-                secureTextEntry 
+                secureTextEntry
+                onChangeText={event => this.onPasswordChange(event)}
               />
             </View>
-            <TouchableOpacity activeOpacity={.5}>
+            <View style={styles.alertWrap}>
+                <Text style={styles.alert}>{this.props.alert}</Text>
+            </View>
+            <TouchableOpacity 
+            activeOpacity={.5}
+            onPress={() => this.props.handleLogin(this.state.email, this.state.password)}>
               <View style={styles.button}>
                 <Text style={styles.buttonText}>Log In</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={.5}>
+            <TouchableOpacity 
+            activeOpacity={.5}
+            onPress={() => this.props.handleSignup(this.state.email, this.state.password)}>
               <View style={styles.button}>
                 <Text style={styles.buttonText}>Sign Up</Text>
               </View>
@@ -105,9 +135,10 @@ export default class Login2 extends Component {
   input: {
     flex: 1,
     paddingHorizontal: 10,
+    color: '#FFF',
   },
   button: {
-    backgroundColor: "#FF3366",
+    backgroundColor: "#7FDBFF",
     paddingVertical: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -115,25 +146,17 @@ export default class Login2 extends Component {
   },
   buttonText: {
     color: "#FFF",
-    fontSize: 18,
-  },
-  forgotPasswordText: {
-    color: "#D8D8D8",
-    backgroundColor: "transparent",
-    textAlign: "right",
-    paddingRight: 15,
-  },
-  signupWrap: {
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    fontSize: 20,
+    fontWeight: '600',
   },
   accountText: {
     color: "#D8D8D8"
   },
-  signupLinkText: {
-    color: "#FFF",
-    marginLeft: 5,
+  alertWrap: {
+    flex: 1,
+  },
+  alert: {
+    backgroundColor: 'transparent',
+    color: 'white'
   }
 });
