@@ -60,7 +60,7 @@ export default class CreateForm extends Component {
 	}
 
 	handleSave = () => {
-		// console.log(this.state);
+		console.log(this.state);
 		  fetch('https://skate-map-4d126.firebaseio.com/spots.json', {
 		    method: 'POST',
 		    headers: {
@@ -250,6 +250,6 @@ const styles = StyleSheet.create({
 	featureColumn: {
 	},
 	checkBoxContainer: {
-		margin: 5,
+		// margin: 5,
 	}
 });

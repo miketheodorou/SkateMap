@@ -7,7 +7,8 @@ import {
   Button,
   FlatList,
   TouchableHighlight,
-  TextInput
+	TextInput,
+	ScrollView
 } from 'react-native';
 
 import CheckBox from 'react-native-modest-checkbox';
@@ -62,20 +63,24 @@ export default class SpotShow extends Component {
 
 		// Render button conditionals
 		if (currentUser == user) {
-			deleteButton = <TouchableHighlight
-											style={styles.button}
-											onPress={() => this.deleteSpot(key)}>
-											<Text style={styles.buttonText}>Delete</Text>
-										</TouchableHighlight>
+			deleteButton = <View style={styles.actionButtons}>
+											<TouchableHighlight
+												style={styles.editButton}
+												onPress={() => this.deleteSpot(key)}>
+												<Text style={styles.buttonText}>Delete</Text>
+											</TouchableHighlight>
+										</View>
 
-			editButton = <TouchableHighlight
-											style={styles.button}
-											onPress={() => this.editSpot(spot)}>
-											<Text style={styles.buttonText}>Edit</Text>
-										</TouchableHighlight>
+			editButton = <View style={styles.actionButtons}>
+											<TouchableHighlight
+												style={styles.deleteButton}
+												onPress={() => this.editSpot(spot)}>
+												<Text style={styles.buttonText}>Edit</Text>
+											</TouchableHighlight>
+										</View>
 		}
 
-		// render spot features conditionals
+		// Render spot features conditionals
 		if (Handrails == true) {
 			handRails = <View style={styles.checkBoxContainer}>
 										<CheckBox 
@@ -203,36 +208,38 @@ export default class SpotShow extends Component {
 		}
 
 		return(
-			<View style={styles.mainContainer}>
-				<View style={styles.nameContainer}>
-					<Text style={styles.welcome}>{name}</Text>
-				</View>
-				<View style={styles.descContainer}>
-					<Text style={styles.container}>{desc}</Text>
-				</View>
-				<View style={styles.featuresContainer}>
-					<View style={styles.featuresContent}>
-						{handRails}
-						{banks}
-						{flatLedges}
-						{gap}
-						{quarterPipe}
-						{wallRide}
-						{manualPads}
-						{spine}
-						{halfPipe}
-						{kicker}
-						{poleJam}
-						{stairSet}
-						{flatRail}
-						{picnicTable}
+			<ScrollView>
+				<View style={styles.mainContainer}>
+					<View style={styles.nameContainer}>
+						<Text style={styles.welcome}>{name}</Text>
 					</View>
+					<View style={styles.descContainer}>
+						<Text style={styles.container}>{desc}</Text>
+					</View>
+					<View style={styles.featuresContainer}>
+						<View style={styles.featuresContent}>
+							{handRails}
+							{banks}
+							{flatLedges}
+							{gap}
+							{quarterPipe}
+							{wallRide}
+							{manualPads}
+							{spine}
+							{halfPipe}
+							{kicker}
+							{poleJam}
+							{stairSet}
+							{flatRail}
+							{picnicTable}
+						</View>
+					</View>
+					<View style={styles.buttonsContainer}>
+						{editButton}
+						{deleteButton}	
+					</View>			
 				</View>
-				<View style={styles.buttonsContainer}>
-					{editButton}
-					{deleteButton}	
-				</View>			
-			</View>
+			</ScrollView>
 		);
 	}
 }
@@ -255,7 +262,6 @@ const styles = StyleSheet.create({
 	},
 	buttonsContainer: {
 		flexDirection: 'row',
-		alignItems: 'center'
 	},
 	featuresContent: {
 		width: '100%',
@@ -274,17 +280,23 @@ const styles = StyleSheet.create({
 	  textAlign: 'center',
 	  margin: 10,
 	},
-	button: {
-		marginTop: 30,
-		marginLeft: 70,
-		marginRight: 70,
-		padding: 20,
-		backgroundColor: "red",
-		borderRadius: 10,
+	deleteButton: {
+		padding: 7,
+		borderRadius: 5,
+		backgroundColor: "#7FDBFF",
+	},
+	editButton: {
+		padding: 7,
+		borderRadius: 5,
+		backgroundColor: 'red',
 	},
 	buttonText: {
 		color: '#FFF',
-		fontSize: 30,
+		fontSize: 20,
 		textAlign: 'center',
 	},
+	actionButtons: {
+		margin: 5,
+		borderRadius: 5,
+	}
 });

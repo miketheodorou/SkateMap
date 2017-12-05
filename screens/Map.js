@@ -5,7 +5,8 @@ import {
   Text,
   Image,
   Button,
-  Dimensions
+  Dimensions,
+	TouchableOpacity
 } from 'react-native';
 import * as firebase from 'firebase';
 
@@ -122,7 +123,11 @@ export default class Map extends Component <{}> {
 							<MapView.Callout>
 							    <View style={styles.callout}>
 							    	<Text>{marker.name}</Text>
-							      <Button title='View Spot' onPress={() => this.onLearnMore(marker)} />
+										<TouchableOpacity 
+											style={styles.button} 
+											onPress={() => this.onLearnMore(marker)}>
+											<Text style={styles.buttonText}>View Spot</Text>
+										</TouchableOpacity>
 							    </View>
 							  </MapView.Callout>
 							</MapView.Marker>
@@ -146,13 +151,10 @@ const styles = StyleSheet.create({
 		right: 0,
 		bottom: 0,
 	},
-	radius: {
-		backgroundColor: 'green',
-		borderRadius: 10,
+	button: {
+		backgroundColor: "#7FDBFF",
 	},
-	userMarker: {
-		backgroundColor: 'blue',
-		borderRadius: 10,
-		borderColor: 'white',
+	buttonText: {
+		color: "#7FDBFF",
 	}
 })

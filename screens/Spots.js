@@ -53,7 +53,7 @@ export default class Spots extends Component<{}> {
     return(
       <ScrollView>
         <List>
-          {this.state.spots.map((spot, i) => (
+          {this.state.spots.reverse().map((spot, i) => (
             <ListItem 
               key={i}
               title={spot.name}

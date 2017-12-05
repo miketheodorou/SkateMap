@@ -20,7 +20,7 @@ export default class App extends Component {
 	  this.database = firebase.database();
 	  this.spotsRef = this.database.ref('/spots');
     this.state = {
-      currentUser: null,
+      currentUser: 'miketheo423@gmail.com',
       alert: '',
     };
 	}
@@ -56,15 +56,15 @@ export default class App extends Component {
 	};
 
   render() {
-  	// if (!this.state.currentUser) {
-	  //     return <LoginForm
-	  //     					handleLogin={this.handleLogin}
-	  //     					handleSignup={this.handleSignup}
-	  //     					alert={this.state.alert}/>;
-	  //   } else {
+  	if (!this.state.currentUser) {
+	      return <LoginForm
+	      					handleLogin={this.handleLogin}
+	      					handleSignup={this.handleSignup}
+	      					alert={this.state.alert}/>;
+	    } else {
   	return <Tabs 
   						screenProps={{currentUser: this.state.currentUser}}/>
-  	// }
+  	}
   }
 }
 
