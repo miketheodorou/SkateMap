@@ -27,11 +27,11 @@ export default class CreateForm extends Component {
 		ManualPads: false,
 		Spine: false,
 		Halfpipe: false,
-		Hips: false,
+		Kicker: false,
 		PoleJam: false,
 		Stairset: false,
 		FlatRail: false,
-		Picnictable: false,
+		PicnicTable: false,
 	}
 
 	onNameChange(event) {
@@ -151,7 +151,7 @@ export default class CreateForm extends Component {
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
-									label="Hips"
+									label="Kicker"
 									onChange={(checked) => this.handleCheck(checked)}
 									/>
 							</View>
@@ -175,7 +175,7 @@ export default class CreateForm extends Component {
 							</View>
 							<View style={styles.checkBoxContainer}>
 								<CheckBox 
-									label="Picnictable"
+									label="PicnicTable"
 									onChange={(checked) => this.handleCheck(checked)}
 									/>
 							</View>
@@ -206,13 +206,17 @@ const styles = StyleSheet.create({
 	},
 	buttonContainer: {
 		width: '100%',
-		justifyContent: 'center',
+		justifyContent: 'flex-end',
 		alignItems: 'center',
 	},
 	featuresContainer: {
 		width: '100%',
 		alignItems: 'center',
-		marginTop: 20
+		marginTop: 20,
+		paddingTop: 30,
+		paddingRight: 30,
+		paddingBottom: 30,
+		paddingLeft: 40, 
 	},
 	button: {
 		marginTop: 5,
