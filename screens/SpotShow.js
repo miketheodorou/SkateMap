@@ -210,9 +210,9 @@ export default class SpotShow extends Component {
 		return(
 			<ScrollView>
 				<View style={styles.mainContainer}>
-					<View style={styles.nameContainer}>
+					{/* <View style={styles.nameContainer}>
 						<Text style={styles.welcome}>{name}</Text>
-					</View>
+					</View> */}
 					<View style={styles.descContainer}>
 						<Text style={styles.container}>{desc}</Text>
 					</View>
