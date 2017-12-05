@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Tabs } from './config/router';
 import { StyleSheet, View } from 'react-native';
 import LoginForm from './screens/LoginForm';
+import Login2 from './screens/Login2';
 
 import * as firebase from 'firebase';
 
@@ -20,7 +21,7 @@ export default class App extends Component {
 	  this.database = firebase.database();
 	  this.spotsRef = this.database.ref('/spots');
     this.state = {
-      currentUser: 'miketheo423@gmail.com',
+      currentUser: null,
       alert: '',
     };
 	}
@@ -57,7 +58,7 @@ export default class App extends Component {
 
   render() {
   	if (!this.state.currentUser) {
-	      return <LoginForm
+	      return <Login2
 	      					handleLogin={this.handleLogin}
 	      					handleSignup={this.handleSignup}
 	      					alert={this.state.alert}/>;
