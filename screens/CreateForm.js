@@ -89,7 +89,7 @@ export default class CreateForm extends Component {
 						onChangeText={event => this.onNameChange(event)}/>
 					<FormLabel>Description</FormLabel>
 					<FormInput 
-					onChangeText={event => this.onDescChange(event)} />
+						onChangeText={event => this.onDescChange(event)} />
 				</View>
 				<View style={styles.featuresContainer}>
 					<View style={styles.featuresContent}>
