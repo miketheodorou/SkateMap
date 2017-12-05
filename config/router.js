@@ -62,9 +62,10 @@ export const CreateMapStack = StackNavigator({
 	CreateMap: {
 		screen: CreateMap,
 		navigationOptions: ({ screenProps }) => ({
-		  title: 'Drag Marker to Spot',
-		  headerLeft: null
+		  title: 'Tap Marker and Drag to Spot',
+			headerLeft: null,
 		}),
+		tintColor: 'blue',
 	},
 	CreateForm: {
 		screen: CreateForm,

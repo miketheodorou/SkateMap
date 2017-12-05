@@ -12,8 +12,25 @@ import {
 } from 'react-native';
 
 import CheckBox from 'react-native-modest-checkbox';
+import MapView from 'react-native-maps';
+
 
 export default class SpotShow extends Component {
+
+	state = {
+		initialPoisiton: {
+			latitude: 0,
+			longitude: 0,
+			latitudeDelta: 0.0122,
+			longitudeDelta: 0.0101,
+		},
+		marker: {
+			coordinate: {
+				latitude: 0,
+				longitude: 0
+			}
+		}
+	}
 
 	deleteSpot = (key) => {
 		fetch('https://skate-map-4d126.firebaseio.com/spots/' +  key + '.json', {
@@ -38,8 +55,10 @@ export default class SpotShow extends Component {
 		Handrails, Banks, Flatledges, Gap, Quarterpipe,
 		Wallride, ManualPads, Spine, Halfpipe, Kicker, PoleJam, 
 		Stairset, FlatRail, PicnicTable  } = this.props.navigation.state.params;
-
 		const { currentUser } = this.props.screenProps;
+		
+		let lat = this.props.navigation.state.params.coordinate.latitude;
+		let long = this.props.navigation.state.params.coordinate.longitude;
 
 		let deleteButton;
 		let editButton;
@@ -210,9 +229,6 @@ export default class SpotShow extends Component {
 		return(
 			<ScrollView>
 				<View style={styles.mainContainer}>
-					{/* <View style={styles.nameContainer}>
-						<Text style={styles.welcome}>{name}</Text>
-					</View> */}
 					<View style={styles.descContainer}>
 						<Text style={styles.container}>{desc}</Text>
 					</View>
@@ -234,6 +250,18 @@ export default class SpotShow extends Component {
 							{picnicTable}
 						</View>
 					</View>
+					<View style={styles.mapContainer}>
+						<MapView
+							style={styles.map}
+							initialRegion={{
+								latitude: this.props.navigation.state.params.coordinate.latitude,
+								longitude: this.props.navigation.state.params.coordinate.longitude,
+								latitudeDelta: 0.0122,
+								longitudeDelta: 0.0101,
+							}}>
+								<MapView.Marker coordinate={this.props.navigation.state.params.coordinate}/>
+						</MapView>
+					</View>
 					<View style={styles.buttonsContainer}>
 						{editButton}
 						{deleteButton}	
@@ -248,7 +276,17 @@ export default class SpotShow extends Component {
 const styles = StyleSheet.create({
 	mainContainer: {
 		flex: 1,
-		alignItems: 'center'
+	},
+	mapContainer: {
+		height: 200,
+		width: '100%',
+	},
+	map: {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
 	},
 	nameContainer: {
 		width: '100%',
@@ -263,23 +301,21 @@ const styles = StyleSheet.create({
 	},
 	buttonsContainer: {
 		flexDirection: 'row',
+		justifyContent: 'flex-end',
+		padding: 10,
 	},
 	featuresContent: {
 		width: '100%',
 		padding: 10,
 		flexDirection: 'row',
 		flexWrap: 'wrap',
-		alignItems: 'center'
+		// alignItems: 'center',
+		justifyContent: 'center'
 	},
 	featureColumn: {
 	},
 	checkBoxContainer: {
 		margin: 5,
-	},
-	welcome: {
-	  fontSize: 20,
-	  textAlign: 'center',
-	  margin: 10,
 	},
 	deleteButton: {
 		padding: 7,

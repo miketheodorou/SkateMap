@@ -6,7 +6,7 @@ import {
   Image,
   Button,
   Dimensions,
-	TouchableOpacity
+	TouchableHighlight
 } from 'react-native';
 import * as firebase from 'firebase';
 
@@ -123,11 +123,11 @@ export default class Map extends Component <{}> {
 							<MapView.Callout>
 							    <View style={styles.callout}>
 							    	<Text style={styles.spotTitle}>{marker.name}</Text>
-										<TouchableOpacity 
+										<TouchableHighlight 
 											style={styles.button} 
 											onPress={() => this.onLearnMore(marker)}>
 											<Text style={styles.buttonText}>View Spot</Text>
-										</TouchableOpacity>
+										</TouchableHighlight>
 							    </View>
 							  </MapView.Callout>
 							</MapView.Marker>
