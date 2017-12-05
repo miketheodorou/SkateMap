@@ -20,7 +20,7 @@ export default class App extends Component {
 	  this.database = firebase.database();
 	  this.spotsRef = this.database.ref('/spots');
     this.state = {
-      currentUser: 'miketheo423@gmail.com',
+      currentUser: null,
       alert: '',
     };
 	}
