@@ -55,7 +55,7 @@ export default class SpotShow extends Component {
 	}
 
 	editSpot = (spot) => {
-    this.props.navigation.navigate('EditSpot', {...spot});
+    this.props.navigation.navigate('EditSpotMap', {...spot});
   }
 
 	render() {

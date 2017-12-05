@@ -98,7 +98,7 @@ export default class Map extends Component <{}> {
 	}
 
 	onLearnMore = (marker) => {
-		this.props.navigation.navigate('SpotShow', {...marker});
+		this.props.navigation.navigate('SpotShowMap', {...marker});
 	}
 
 	WatchID: ?number = null
