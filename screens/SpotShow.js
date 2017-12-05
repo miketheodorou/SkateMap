@@ -8,7 +8,8 @@ import {
   FlatList,
   TouchableHighlight,
 	TextInput,
-	ScrollView
+	ScrollView,
+	Linking
 } from 'react-native';
 
 import CheckBox from 'react-native-modest-checkbox';
@@ -31,6 +32,16 @@ export default class SpotShow extends Component {
 			}
 		}
 	}
+
+	redirectToMap = () => {
+    Linking.canOpenURL(`http://maps.apple.com/?daddr=${this.props.navigation.state.params.coordinate.latitude},${this.props.navigation.state.params.coordinate.longitude}`).then(supported => {
+        if (supported) {
+            Linking.openURL(`http://maps.apple.com/?daddr=${this.props.navigation.state.params.coordinate.latitude},${this.props.navigation.state.params.coordinate.longitude}`);
+        } else {
+            console.log('Don\'t know how to go');
+        }
+    }).catch(err => console.error('An error occurred', err));
+}
 
 	deleteSpot = (key) => {
 		fetch('https://skate-map-4d126.firebaseio.com/spots/' +  key + '.json', {
@@ -263,6 +274,13 @@ export default class SpotShow extends Component {
 						</MapView>
 					</View>
 					<View style={styles.buttonsContainer}>
+						<View style={styles.actionButtons}>
+							<TouchableHighlight
+								style={styles.directionsButton}
+								onPress={() => this.redirectToMap(this.state.marker.coordinate)}>
+								<Text style={styles.buttonText}>Directions</Text>
+							</TouchableHighlight>
+						</View>
 						{editButton}
 						{deleteButton}	
 					</View>			
@@ -326,6 +344,11 @@ const styles = StyleSheet.create({
 		padding: 7,
 		borderRadius: 5,
 		backgroundColor: 'red',
+	},
+	directionsButton: {
+		padding: 7,
+		borderRadius: 5,
+		backgroundColor: '#40e080',
 	},
 	buttonText: {
 		color: '#FFF',
