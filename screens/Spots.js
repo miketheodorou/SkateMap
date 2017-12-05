@@ -46,7 +46,7 @@ export default class Spots extends Component<{}> {
 
   // Navigates to the Spot Show page for the Specific Spot and passes spot params
   onLearnMore = (spot) => {
-    this.props.navigation.navigate('SpotShow', {...spot});
+    this.props.navigation.navigate('SpotShowSpot', {...spot});
   }
   
   render() {

@@ -6,30 +6,29 @@ import { Icon } from 'react-native-elements';
 import Spots from '../screens/Spots';
 import Map from '../screens/Map';
 import CreateMap from '../screens/CreateMap';
-import SpotShow from '../screens/SpotShow';
+import SpotShowSpot from '../screens/SpotShowSpot';
+import SpotShowMap from '../screens/SpotShowMap';
 import CreateForm from '../screens/CreateForm';
 import MarkerShow from '../screens/MarkerShow';
-import EditSpot from '../screens/EditSpot';
+import EditSpotShow from '../screens/EditSpotShow';
+import EditSpotMap from '../screens/EditSpotMap';
 
 export const SpotStack = StackNavigator({
 	Spots: {
 		screen: Spots,
-		// navigationOptions: {
-		// 	title: 'Spots',
-		// }
 		navigationOptions: ({ screenProps }) => ({
 		  title: 'Spots',
 		  headerLeft: null
 		}),
 	},
-	SpotShow: {
-    screen: SpotShow,
+	SpotShowSpot: {
+    screen: SpotShowSpot,
     navigationOptions: ({ navigation, screenProps }) => ({
       title: `${navigation.state.params.name}`,
     }),
   },
-  EditSpot: {
-    screen: EditSpot,
+  EditSpotShow: {
+    screen: EditSpotShow,
     navigationOptions: ({ navigation, screenProps }) => ({
       title: `${navigation.state.params.name}`,
     }),
@@ -44,14 +43,14 @@ export const MapStack = StackNavigator({
 		  headerLeft: null
 		}),
 	},
-	 SpotShow: {
-    screen: SpotShow,
+	 SpotShowMap: {
+    screen: SpotShowMap,
     navigationOptions: ({ navigation, screenProps }) => ({
       title: `${navigation.state.params.name}`,
     }),
   },
-  EditSpot: {	
-	  screen: EditSpot,
+  EditSpotMap: {	
+	  screen: EditSpotMap,
 	  navigationOptions: ({ navigation, screenProps }) => ({
 	    title: `${navigation.state.params.name}`,
 	  }),
