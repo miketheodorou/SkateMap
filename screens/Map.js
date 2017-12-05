@@ -54,8 +54,8 @@ export default class Map extends Component <{}> {
 			let initialRegion = {
 				latitude: lat,
 				longitude: long,
-				latitudeDelta: LATITUDE_DELTA,
-				longitudeDelta: LONGITUDE_DELTA
+				latitudeDelta: 0.0122,
+				longitudeDelta: 0.0101,
 			}
 			console.log(initialRegion);
 			this.setState({initialPosition: initialRegion});
@@ -71,8 +71,8 @@ export default class Map extends Component <{}> {
 			let lastRegion = {
 				latitude: lat,
 				longitude: long,
-				latitudeDelta: LATITUDE_DELTA,
-				longitudeDelta: LONGITUDE_DELTA
+				latitudeDelta: 0.0122,
+				longitudeDelta: 0.0101,
 			}
 
 			this.setState({initialPosition: lastRegion});
@@ -122,7 +122,7 @@ export default class Map extends Component <{}> {
 							description={marker.desc}> 
 							<MapView.Callout>
 							    <View style={styles.callout}>
-							    	<Text>{marker.name}</Text>
+							    	<Text style={styles.spotTitle}>{marker.name}</Text>
 										<TouchableOpacity 
 											style={styles.button} 
 											onPress={() => this.onLearnMore(marker)}>
@@ -153,8 +153,16 @@ const styles = StyleSheet.create({
 	},
 	button: {
 		backgroundColor: "#7FDBFF",
+		padding: 5
 	},
 	buttonText: {
-		color: "#7FDBFF",
-	}
+		color: "white",
+		textAlign: 'center',
+		fontSize: 15,
+		fontWeight: '600',
+	},
+	spotTitle: {
+		marginBottom: 3,
+		textAlign: 'center',
+	},
 })

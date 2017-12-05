@@ -255,6 +255,7 @@ const styles = StyleSheet.create({
 	},
 	descContainer: {
 		width: '100%',
+		padding: 15,
 	},
 	featuresContainer: {
 		width: '100%',
