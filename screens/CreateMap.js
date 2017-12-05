@@ -5,7 +5,8 @@ import {
   Text,
   Image,
   Button,
-  Dimensions
+	Dimensions,
+	TouchableHighlight
 } from 'react-native';
 
 import MapView from 'react-native-maps';
@@ -94,7 +95,12 @@ export default class CreateMap extends Component<{}> {
 			    onDragEnd={this._onMarkerDrag}>
 			    <MapView.Callout>
 			        <View style={styles.callout}>
-			          <Button title='Create Spot' onPress={this._handleCreate} />
+								<Text style={styles.spotTitle}>Press and Hold to Drag</Text>
+								<TouchableHighlight 
+										style={styles.button} 
+										onPress={this._handleCreate}>
+										<Text style={styles.buttonText}>Create Spot</Text>
+									</TouchableHighlight>
 			        </View>
 			      </MapView.Callout>
 			  </MapView.Marker>
@@ -105,17 +111,25 @@ export default class CreateMap extends Component<{}> {
 
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
-	},
 	map: {
 		position: "absolute",
 		top: 0,
 		left: 0,
 		right: 0,
 		bottom: 0,
-	}
+	},
+	spotTitle: {
+		marginBottom: 3,
+		textAlign: 'center',
+	},
+	button: {
+		backgroundColor: "#7FDBFF",
+		padding: 5
+	},
+	buttonText: {
+		color: "white",
+		textAlign: 'center',
+		fontSize: 15,
+		fontWeight: '600',
+	},
 })
