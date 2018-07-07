@@ -19,7 +19,7 @@ const lockIcon = require("../images/login1_lock.png");
 const personIcon = require("../images/login1_person.png");
 const mark = require("../images/skate-cover.png");
 
-export default class Login2 extends Component {
+export default class Login extends Component {
 
   state = {
     email: '',

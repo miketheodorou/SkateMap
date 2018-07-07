@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs } from './config/router';
 import { StyleSheet, View } from 'react-native';
-import Login2 from './screens/Login2';
+import Login from './screens/Login';
 
 import * as firebase from 'firebase';
 
@@ -20,9 +20,9 @@ export default class App extends Component {
 	  this.database = firebase.database();
 	  this.spotsRef = this.database.ref('/spots');
     this.state = {
-			// currentUser: 'miketheo423@gmail.com',
-			currentUser: null,
-      alert: '',
+			currentUser: 'miketheo423@gmail.com',
+			// currentUser: null,
+      // alert: '',
     };
 	}
 
