@@ -11,6 +11,8 @@ import {
 import { FormLabel, FormInput } from 'react-native-elements';
 import CheckBox from 'react-native-modest-checkbox';
 
+import ImagePicker from 'react-native-image-picker';
+
 export default class CreateForm extends Component {
 
 	state = {
@@ -101,8 +103,6 @@ export default class CreateForm extends Component {
 		const { latitude, longitude } = this.props.navigation.state.params;
 		// console.log(this.props.screenProps.currentUser);
 		const { currentUser } = this.props.screenProps;
-
-
 		return(
 			<View style={styles.manincontainer}>
 				<View style={styles.formContainer}>
@@ -121,12 +121,57 @@ export default class CreateForm extends Component {
 				<View style={styles.buttonContainer}>
 					<TouchableHighlight
 						style={styles.button}
+						onPress={this.show.bind(this)}>
+						<Text style={styles.buttonText}>Show Picker</Text>
+					</TouchableHighlight>
+				</View>
+				<View style={styles.buttonContainer}>
+					<TouchableHighlight
+						style={styles.button}
 						onPress={this.handleSave}>
 						<Text style={styles.buttonText}>Create Spot</Text>
 					</TouchableHighlight>
 				</View>
 			</View>
 		);
+	}
+
+	show() {
+		let options = {
+			title: 'Select Avatar',
+			customButtons: [
+				{name: 'fb', title: 'Choose Photo from Facebook'},
+			],
+			storageOptions: {
+				skipBackup: true,
+				path: 'images'
+			}
+		};
+		console.log(ImagePicker)
+		ImagePicker.showImagePicker(options, (response) => {
+			console.log('Response = ', response);
+		
+			if (response.didCancel) {
+				console.log('User cancelled image picker');
+			}
+			else if (response.error) {
+				console.log('ImagePicker Error: ', response.error);
+			}
+			else if (response.customButton) {
+				console.log('User tapped custom button: ', response.customButton);
+			}
+			else {
+				let source = { uri: response.uri };
+		
+				// You can also display the image using data:
+				// let source = { uri: 'data:image/jpeg;base64,' + response.data };
+		
+				this.setState({
+					avatarSource: source
+				});
+			}
+		});
+
 	}
 }
 

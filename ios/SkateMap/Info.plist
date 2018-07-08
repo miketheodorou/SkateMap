@@ -54,7 +54,13 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>SkateMap would like to access your location.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>SkateMap would like to access your camera.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>SkateMap would like to access your photos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>SkateMap would like to access your photos.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
